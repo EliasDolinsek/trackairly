@@ -13,11 +13,6 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TODAY">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
       <Button fx:id="btnTracking" mnemonicParsing="false">
          <VBox.margin>
             <Insets top="16.0" />

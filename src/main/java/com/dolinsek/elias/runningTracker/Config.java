@@ -7,40 +7,24 @@ import com.dolinsek.elias.runningTracker.core.times.TrackingData;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Config {
 
     public static File DEFAULT_CONFIG_FILE = new File("config.json");
-    public static Config DEFAULT_CONFIG = new Config(DEFAULT_CONFIG_FILE);
+    public static File DEFAULT_DATA_FILE = new File("data.json");
 
     private File dataFile;
-    private TrackingData trackingData;
-
-    private Tracker tracker;
 
     public Config(File dataFile){
         this.dataFile = dataFile;
-        trackingData = new TrackingData(new ArrayList<>());
-        tracker = new Tracker(trackingData);
     }
 
-    public Config(File dataFile, TrackingData trackingData) {
-        this.dataFile = dataFile;
-        this.trackingData = trackingData;
-        tracker = new Tracker(trackingData);
-    }
-
-    public static Config fromDefaultDataHandler(DataHandler dataHandler) throws Exception {
-        return dataHandler.getConfig(DEFAULT_CONFIG_FILE);
+    public static Config defaultFromDataHandler(DataHandler dataHandler) throws Exception {
+        return fromDataHandler(dataHandler, DEFAULT_CONFIG_FILE);
     }
 
     public static Config fromDataHandler(DataHandler dataHandler, File file) throws Exception {
         return dataHandler.getConfig(file);
-    }
-
-    public Tracker getTracker() {
-        return tracker;
     }
 
     public File getDataFile() {

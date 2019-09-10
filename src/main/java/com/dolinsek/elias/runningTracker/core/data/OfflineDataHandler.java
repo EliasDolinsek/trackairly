@@ -16,6 +16,7 @@ public class OfflineDataHandler implements DataHandler {
     }
     @Override
     public Config getConfig(File file) throws Exception {
+        if (!file.exists()) return new Config(Config.DEFAULT_DATA_FILE);
         final JSONObject jsonObject = new JSONObject(getFileContent(file));
         return new Config(new File(jsonObject.getString("dataFileLocation")));
     }
@@ -25,6 +26,7 @@ public class OfflineDataHandler implements DataHandler {
     }
 
     private String getFileContent(File file) throws Exception{
+        if (!file.exists()) return "";
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         String line;
@@ -38,6 +40,7 @@ public class OfflineDataHandler implements DataHandler {
     }
 
     private TrackingData trackingDataFromJSON(String json){
+        if (json == null || json.trim().equals("")) return new TrackingData(new ArrayList<>());
         final JSONObject jsonObject = new JSONObject(json);
         final JSONArray yearsJSON = jsonObject.getJSONArray("years");
 

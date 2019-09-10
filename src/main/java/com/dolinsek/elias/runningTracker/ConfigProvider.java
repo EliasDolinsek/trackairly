@@ -7,7 +7,7 @@ public class ConfigProvider {
     private static Config config;
 
     public static void init() throws Exception {
-        config = Config.fromDefaultDataHandler(new OfflineDataHandler());
+        config = Config.defaultFromDataHandler(new OfflineDataHandler());
     }
 
     public static Config getConfig() {
