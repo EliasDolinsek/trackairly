@@ -18,13 +18,13 @@ public class Tracker {
     public void start(OnTimeChangedListener listener) throws IOException {
         if(dataTime != null) stop();
         dataTime = new DataTime();
+        trackingData.addDataTime(dataTime);
         dataTime.start(listener);
     }
 
     public void stop() throws IOException {
         if (dataTime != null && isRunning()){
             dataTime.stop();
-            trackingData.addDataTime(dataTime);
             new OfflineDataHandler().writeData(trackingData, ConfigProvider.getConfig().getDataFile());
         }
     }

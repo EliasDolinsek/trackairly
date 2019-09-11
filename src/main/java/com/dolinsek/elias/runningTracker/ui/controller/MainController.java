@@ -32,10 +32,11 @@ public class MainController {
     @FXML
     private Text txtHome, txtStatistics, txtSettings;
 
-    private final Parent home;
+    private final Parent home, statistics;
 
     public MainController() throws IOException {
         home = FXMLLoader.load(getClass().getResource("/home.fxml"));
+        statistics = FXMLLoader.load(getClass().getResource("/statistics_navigation.fxml"));
     }
 
     public void initialize() {
@@ -48,7 +49,7 @@ public class MainController {
             txtStatistics.setFill(Paint.valueOf("#ffffff"));
             imgStatistics.setImage(new Image(getClass().getResourceAsStream("/statistics_white_48dp.png")));
 
-            root.setCenter(new Text("STATISTICS"));
+            root.setCenter(statistics);
         });
         vBoxSettings.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             setTextsFillBlack();

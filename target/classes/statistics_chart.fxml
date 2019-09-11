@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<BarChart fx:id="barChart" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.StatisticsChartsController">
+  <xAxis>
+    <CategoryAxis fx:id="categoryAxis" label="Days" side="BOTTOM" />
+  </xAxis>
+  <yAxis>
+    <NumberAxis fx:id="numberAxis" label="Hours" side="LEFT" />
+  </yAxis>
+</BarChart>
