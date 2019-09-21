@@ -3,8 +3,11 @@ package com.dolinsek.elias.runningTracker.core.times;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DataMonth extends DataCollection{
 
@@ -16,12 +19,29 @@ public class DataMonth extends DataCollection{
         this.dataDays = dataDays;
     }
 
+    public static DataMonth emptyDataMonth(int month){
+        return new DataMonth(month, new ArrayList<>());
+    }
+
     public int getMonth() {
         return month;
     }
 
     public ArrayList<DataDay> getDataDays() {
         return dataDays;
+    }
+
+    public ArrayList<DataDay> getCompleteDataDays(){
+        final ArrayList<DataDay> allDataDays = new ArrayList<>(getDataDays());
+
+        Calendar calendar = Calendar.getInstance();
+        for (int i = 0; i< YearMonth.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)).lengthOfMonth(); i++){
+            if (getDataDay(i) == null){
+                allDataDays.add(i, DataDay.emptyDataDay(i));
+            }
+        }
+
+        return allDataDays;
     }
 
     @Override
@@ -67,4 +87,15 @@ public class DataMonth extends DataCollection{
 
         return totalRunningTime;
     }
+
+    @Override
+    public void sort() {
+        super.sort();
+        Collections.sort(dataDays, Comparator.comparingInt(DataDay::getDay));
+
+        for (DataDay dataDay:dataDays){
+            dataDay.sort();
+        }
+    }
+
 }

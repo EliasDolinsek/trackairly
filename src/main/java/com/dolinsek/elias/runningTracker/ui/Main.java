@@ -4,6 +4,7 @@ import com.dolinsek.elias.runningTracker.Config;
 import com.dolinsek.elias.runningTracker.ConfigProvider;
 import com.dolinsek.elias.runningTracker.core.data.DataProvider;
 import com.dolinsek.elias.runningTracker.core.data.OfflineDataHandler;
+import com.dolinsek.elias.runningTracker.core.times.DataTime;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -52,5 +53,7 @@ public class Main extends Application {
     private void initApp() throws Exception {
         ConfigProvider.init();
         DataProvider.init();
+        //TODO delte line
+        //DataProvider.getTrackingData().addCustomDataTime(new DataTime(1564617600000l, 1564617600100l), 2019,7,1);
     }
 }

@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class TrackingData {
 
@@ -18,6 +20,10 @@ public class TrackingData {
         return dataYears;
     }
 
+    public boolean hasData(){
+        return dataYears != null && dataYears.size() != 0;
+    }
+
     public JSONObject toJSON(){
         final JSONArray yearsJSON = new JSONArray();
         for(DataYear year:dataYears){
@@ -26,6 +32,7 @@ public class TrackingData {
 
         final JSONObject trackingDataJSON = new JSONObject();
         trackingDataJSON.put("years", yearsJSON);
+
         return trackingDataJSON;
     }
 
@@ -45,5 +52,13 @@ public class TrackingData {
         final DataYear dataYear = new DataYear(year, new ArrayList<>());
         dataYear.addCustomDataTime(dataTime, month, day);
         dataYears.add(dataYear);
+    }
+
+    public void sort(){
+        Collections.sort(dataYears, Comparator.comparingInt(DataYear::getYear));
+
+        for (DataYear dataYear:dataYears){
+            dataYear.sort();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.dolinsek.elias.runningTracker.ui.controller;
 
+import com.dolinsek.elias.runningTracker.core.data.DataProvider;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -50,19 +51,45 @@ public class StatisticsNavigationController {
         btnYears.setToggleGroup(tgButtons);
 
         tgButtons.selectedToggleProperty().addListener((observable, oldValue, newValue) -> setupForToggledButton(newValue));
-        btnRefresh.setOnAction(event -> statisticsOverviewController.update());
+        btnRefresh.setOnAction(event -> {
+            if (DataProvider.getTrackingData().hasData()){
+                statisticsOverviewController.update();
+                statisticsChartsController.update();
+            }
+
+            setTogglesClickabilities();
+        });
 
         setupForToggledButton(btnOverview);
+        setTogglesClickabilities();
+    }
+
+    private void setTogglesClickabilities() {
+        if (!DataProvider.getTrackingData().hasData()) {
+            btnOverview.setDisable(true);
+            btnDays.setDisable(true);
+            btnMonths.setDisable(true);
+            btnYears.setDisable(true);
+        } else {
+            btnOverview.setDisable(false);
+            btnDays.setDisable(false);
+            btnMonths.setDisable(false);
+            btnYears.setDisable(false);
+        }
     }
 
     private void setupForToggledButton(Toggle newValue) {
         if (newValue == btnOverview) {
             root.setCenter(overview);
-        } else if (newValue == btnDays){
+        } else if (newValue == btnDays) {
             root.setCenter(charts);
             statisticsChartsController.loadDaysChart();
+        } else if (newValue == btnMonths) {
+            root.setCenter(charts);
+            statisticsChartsController.loadMonthsStatistics();
         } else {
-            System.out.println("STATISTICS_NOT_IMPLEMENTED_YET");
+            root.setCenter(charts);
+            statisticsChartsController.loadYearsStatistics();
         }
     }
 }

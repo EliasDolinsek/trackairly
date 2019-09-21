@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.StatisticsOverviewController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.StatisticsOverviewController">
     <children>
       <VBox alignment="CENTER">
          <children>
-            <Text fx:id="txtToday" strokeType="OUTSIDE" strokeWidth="0.0" text="1h 10 m">
+            <Text fx:id="txtToday" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                <font>
                   <Font size="36.0" />
                </font>
@@ -34,7 +34,7 @@
             <children>
             <VBox alignment="CENTER">
                <children>
-                  <Text fx:id="txtThisWeek" strokeType="OUTSIDE" strokeWidth="0.0" text="1h 10 m">
+                  <Text fx:id="txtThisWeek" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -44,7 +44,7 @@
             </VBox>
             <VBox alignment="CENTER" GridPane.columnIndex="1">
                <children>
-                  <Text fx:id="txtThisMonth" strokeType="OUTSIDE" strokeWidth="0.0" text="1h 10 m">
+                  <Text fx:id="txtThisMonth" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -54,7 +54,7 @@
             </VBox>
             <VBox alignment="CENTER" layoutX="10.0" layoutY="42.0" GridPane.rowIndex="1">
                <children>
-                  <Text fx:id="txtThisYear" strokeType="OUTSIDE" strokeWidth="0.0" text="1h 10 m">
+                  <Text fx:id="txtThisYear" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -64,7 +64,7 @@
             </VBox>
             <VBox alignment="CENTER" layoutX="10.0" layoutY="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Text fx:id="txtTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="1h 10 m">
+                  <Text fx:id="txtTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
                         <Font size="24.0" />
                      </font>

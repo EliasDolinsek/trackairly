@@ -1,6 +1,7 @@
 package com.dolinsek.elias.runningTracker.ui.controller;
 
 import com.dolinsek.elias.runningTracker.core.data.DataProvider;
+import com.dolinsek.elias.runningTracker.core.times.DataCollection;
 import com.dolinsek.elias.runningTracker.core.times.Tracker;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -29,14 +30,14 @@ public class HomeController {
                 } else {
                     tracker.start(() -> Platform.runLater(() -> update()));
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println(e);
             }
         });
     }
 
     private void update() {
-        txtTime.setText(tracker.getRunningTimeAsString());
+        txtTime.setText(DataCollection.getTotalRunningTimeAsString(DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear())).getTotalRunningTime()));
         if (tracker.isRunning()) {
             btnTracking.setText("STOP TRACKING");
         } else {

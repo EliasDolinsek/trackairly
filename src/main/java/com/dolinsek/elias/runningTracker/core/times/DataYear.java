@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DataYear extends DataCollection {
 
@@ -28,6 +30,25 @@ public class DataYear extends DataCollection {
 
     public ArrayList<DataMonth> getDataMonths() {
         return dataMonths;
+    }
+
+    public ArrayList<DataMonth> getCompleteDataMonths(){
+        final ArrayList<DataMonth> allDataMonths = new ArrayList<>(getDataMonths());
+        for (int i = 0; i<11; i++){
+            if (getDataMonthByMonth(i, allDataMonths) == null){
+                allDataMonths.add(i, DataMonth.emptyDataMonth(i));
+            }
+        }
+
+        return allDataMonths;
+    }
+
+    private DataMonth getDataMonthByMonth(int month, ArrayList<DataMonth> months){
+        for (DataMonth dataMonth:months){
+            if (dataMonth.getMonth() == month) return dataMonth;
+        }
+
+        return null;
     }
 
     public void addDataTime(DataTime dataTime){
@@ -75,7 +96,13 @@ public class DataYear extends DataCollection {
         return totalRunningTime;
     }
 
-    public static void main(String[] args) throws Exception {
+    @Override
+    public void sort() {
+        super.sort();
+        Collections.sort(dataMonths, Comparator.comparingInt(DataMonth::getMonth));
 
+        for (DataMonth dataMonth:dataMonths){
+            dataMonth.sort();
+        }
     }
 }

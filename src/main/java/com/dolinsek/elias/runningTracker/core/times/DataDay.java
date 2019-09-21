@@ -15,6 +15,10 @@ public class DataDay extends DataCollection {
         this.dataTimes = dataTimes;
     }
 
+    public static DataDay emptyDataDay(int day){
+        return new DataDay(day, new ArrayList<>());
+    }
+
     public int getDay() {
         return day;
     }
@@ -48,5 +52,10 @@ public class DataDay extends DataCollection {
         }
 
         return totalRunningTime;
+    }
+
+    @Override
+    public void sort() {
+        dataTimes.sort((o1, o2) -> (int) (o1.getStartTime() - o2.getStartTime()));
     }
 }

@@ -2,9 +2,6 @@ package com.dolinsek.elias.runningTracker.core.times;
 
 import org.json.JSONObject;
 
-import java.awt.*;
-import java.time.Instant;
-
 public class DataTime extends DataCollection {
 
     private long startTime, stopTime;
@@ -62,5 +59,13 @@ public class DataTime extends DataCollection {
         } else {
             return stopTime - startTime;
         }
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public long getStopTime() {
+        return stopTime;
     }
 }

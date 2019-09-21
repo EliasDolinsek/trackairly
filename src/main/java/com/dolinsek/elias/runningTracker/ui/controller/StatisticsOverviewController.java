@@ -20,11 +20,13 @@ public class StatisticsOverviewController {
     }
 
     public void update(){
-        setYearText();
-        setMonthText();
-        setTodayText();
-        setTotalText();
-        setThisWeekText();
+        if (DataProvider.getTrackingData().hasData()){
+            setYearText();
+            setMonthText();
+            setTodayText();
+            setTotalText();
+            setThisWeekText();
+        }
     }
 
     private void setTotalText(){
@@ -37,7 +39,7 @@ public class StatisticsOverviewController {
     }
 
     private void setYearText() {
-        final DataYear dataYear = getThisDataYear();
+        final DataYear dataYear = DataProvider.getThisDataYear();
         if (dataYear != null) {
             txtThisYear.setText(DataCollection.getTotalRunningTimeAsString(dataYear.getTotalRunningTime()));
         } else {
@@ -46,7 +48,7 @@ public class StatisticsOverviewController {
     }
 
     private void setMonthText() {
-        final DataMonth dataMonth = getThisDataMonth(getThisDataYear());
+        final DataMonth dataMonth = DataProvider.getThisDataMonth(DataProvider.getThisDataYear());
         if (dataMonth != null){
             txtThisMonth.setText(DataCollection.getTotalRunningTimeAsString(dataMonth.getTotalRunningTime()));
         } else {
@@ -55,7 +57,7 @@ public class StatisticsOverviewController {
     }
 
     private void setTodayText(){
-        final DataDay dataDay = getThisDataDay(getThisDataMonth(getThisDataYear()));
+        final DataDay dataDay = DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear()));
         if (dataDay != null){
             txtToday.setText(DataCollection.getTotalRunningTimeAsString(dataDay.getTotalRunningTime()));
         } else {
@@ -71,38 +73,8 @@ public class StatisticsOverviewController {
         }
     }
 
-    private DataYear getThisDataYear() {
-        for (DataYear dataYear : DataProvider.getTrackingData().getDataYears()) {
-            if (dataYear.getYear() == Calendar.getInstance().get(Calendar.YEAR)) {
-                return dataYear;
-            }
-        }
-
-        return null;
-    }
-
-    private DataMonth getThisDataMonth(DataYear dataYear){
-        for (DataMonth dataMonth:dataYear.getDataMonths()){
-            if (dataMonth.getMonth() == Calendar.getInstance().get(Calendar.MONTH)){
-                return dataMonth;
-            }
-        }
-
-        return null;
-    }
-
-    private DataDay getThisDataDay(DataMonth dataMonth){
-        for (DataDay dataDay:dataMonth.getDataDays()){
-            if (dataDay.getDay() == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)){
-                return dataDay;
-            }
-        }
-
-        return null;
-    }
-
     private long getThisWeekTimes() throws Exception{
-        final DataMonth dataMonth = getThisDataMonth(getThisDataYear());
+        final DataMonth dataMonth = DataProvider.getThisDataMonth(DataProvider.getThisDataYear());
         if (dataMonth != null){
             long totalTimes = 0;
             for (DataDay dataDay:dataMonth.getDataDays()){

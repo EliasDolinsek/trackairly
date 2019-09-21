@@ -3,18 +3,24 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.StatisticsChartsController">
    <children>
       <BarChart fx:id="barChart">
          <xAxis>
-            <CategoryAxis fx:id="categoryAxis" label="Days" side="BOTTOM" />
+            <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
          </xAxis>
          <yAxis>
             <NumberAxis fx:id="numberAxis" label="Hours" side="LEFT" />
          </yAxis>
       </BarChart>
+      <HBox alignment="CENTER" spacing="8.0">
+         <Button fx:id="btnPrevious" text="&lt;" />
+         <Button fx:id="btnDate" />
+         <Button fx:id="btnNext" text="&gt;" />
+      </HBox>
    </children>
 </VBox>
