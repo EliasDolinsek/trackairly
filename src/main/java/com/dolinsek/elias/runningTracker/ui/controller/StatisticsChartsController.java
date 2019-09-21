@@ -193,6 +193,10 @@ public class StatisticsChartsController {
         return ((double) (millis / 1000) / 60 / 60);
     }
 
+    public BarChart<String, Double> getBarChart() {
+        return barChart;
+    }
+
     private enum ChartDisplay {
         DAYS, MONTHS, YEARS
     }

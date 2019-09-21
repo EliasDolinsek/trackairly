@@ -19,8 +19,11 @@ public class Main extends Application {
         launch();
     }
 
+    private static Stage currentStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        currentStage = primaryStage;
         initApp();
         setupShutdownHook();
 
@@ -53,7 +56,9 @@ public class Main extends Application {
     private void initApp() throws Exception {
         ConfigProvider.init();
         DataProvider.init();
-        //TODO delte line
-        //DataProvider.getTrackingData().addCustomDataTime(new DataTime(1564617600000l, 1564617600100l), 2019,7,1);
+    }
+
+    public static Stage getCurrentStage() {
+        return currentStage;
     }
 }

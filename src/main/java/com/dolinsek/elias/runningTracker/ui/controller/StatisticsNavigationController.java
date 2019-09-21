@@ -76,6 +76,12 @@ public class StatisticsNavigationController {
             btnMonths.setDisable(false);
             btnYears.setDisable(false);
         }
+
+        if (DataProvider.getTrackingData().hasData() && DataProvider.getTrackingData().getDataYears().size() <= 1){
+            btnYears.setDisable(true);
+        } else {
+            btnYears.setDisable(false);
+        }
     }
 
     private void setupForToggledButton(Toggle newValue) {

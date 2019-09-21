@@ -14,9 +14,11 @@ public class Config {
     public static File DEFAULT_DATA_FILE = new File("data.json");
 
     private File dataFile;
+    private boolean startTrackerOnLaunch;
 
-    public Config(File dataFile){
+    public Config(File dataFile, boolean startTrackerOnLaunch){
         this.dataFile = dataFile;
+        this.startTrackerOnLaunch = startTrackerOnLaunch;
     }
 
     public static Config defaultFromDataHandler(DataHandler dataHandler) throws Exception {
@@ -35,9 +37,18 @@ public class Config {
         this.dataFile = dataFile;
     }
 
+    public boolean startTrackerOnLaunch() {
+        return startTrackerOnLaunch;
+    }
+
+    public void setStartTrackerOnLaunch(boolean startTrackerOnLaunch) {
+        this.startTrackerOnLaunch = startTrackerOnLaunch;
+    }
+
     public JSONObject toJSON(){
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("dataFileLocation", dataFile.getPath());
+        jsonObject.put("startTrackerOnLaunch", startTrackerOnLaunch);
         return jsonObject;
     }
 }

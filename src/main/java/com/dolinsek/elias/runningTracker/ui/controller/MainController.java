@@ -4,6 +4,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,11 +35,15 @@ public class MainController {
     @FXML
     private Text txtHome, txtStatistics, txtSettings;
 
-    private final Parent home, statistics;
+    @FXML
+    private AnchorPane contentRoot; //TODO also in fxml
+
+    private final Parent home, statistics, settings;
 
     public MainController() throws IOException {
         home = FXMLLoader.load(getClass().getResource("/home.fxml"));
         statistics = FXMLLoader.load(getClass().getResource("/statistics_navigation.fxml"));
+        settings = FXMLLoader.load(getClass().getResource("/settings.fxml"));
     }
 
     public void initialize() {
@@ -59,7 +65,7 @@ public class MainController {
             txtSettings.setFill(Paint.valueOf("#ffffff"));
             imgSettings.setImage(new Image(getClass().getResourceAsStream("/settings_white_48dp.png")));
 
-            root.setCenter(new Text("SETTINGS"));
+            root.setCenter(settings);
         });
 
         setupHome();
@@ -76,9 +82,9 @@ public class MainController {
     }
 
     private void setTextsFillBlack(){
-        txtHome.setFill(Paint.valueOf("#000000"));
-        txtStatistics.setFill(Paint.valueOf("#000000"));
-        txtSettings.setFill(Paint.valueOf("#000000"));
+        txtHome.setFill(Paint.valueOf("#757de8"));
+        txtStatistics.setFill(Paint.valueOf("#757de8"));
+        txtSettings.setFill(Paint.valueOf("#757de8"));
     }
 
     private void setBlackImages(){

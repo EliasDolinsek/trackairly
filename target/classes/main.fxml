@@ -3,13 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.MainController" fx:id="root">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.MainController">
    <left>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #3f51b5;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #002984;" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="vBoxHome" alignment="CENTER" spacing="8.0">
                <children>
@@ -18,7 +20,10 @@
                         <Image url="@home_black_48dp.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="txtHome" strokeType="OUTSIDE" strokeWidth="0.0" text="HOME" />
+                  <Text fx:id="txtHome" strokeType="OUTSIDE" strokeWidth="0.0" text="HOME">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -31,7 +36,10 @@
                         <Image url="@statistics_black_48dp.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="txtStatistics" strokeType="OUTSIDE" strokeWidth="0.0" text="STATISTICS" />
+                  <Text fx:id="txtStatistics" strokeType="OUTSIDE" strokeWidth="0.0" text="STATISTICS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -44,7 +52,10 @@
                         <Image url="@settings_black_48dp.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="txtSettings" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS" />
+                  <Text fx:id="txtSettings" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTINGS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Text>
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -53,4 +64,7 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <AnchorPane fx:id="contentRoot" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

@@ -14,19 +14,23 @@ public class OfflineDataHandler implements DataHandler {
     public Config getConfigFromDefaultLocation() throws Exception {
         return getConfig(Config.DEFAULT_CONFIG_FILE);
     }
+
     @Override
     public Config getConfig(File file) throws Exception {
-        if (!file.exists()) return new Config(Config.DEFAULT_DATA_FILE);
+        if (!file.exists()) return new Config(Config.DEFAULT_DATA_FILE, true);
         final JSONObject jsonObject = new JSONObject(getFileContent(file));
-        return new Config(new File(jsonObject.getString("dataFileLocation")));
+        return new Config(new File(jsonObject.getString("dataFileLocation")), jsonObject.getBoolean("startTrackerOnLaunch"));
     }
 
     public TrackingData getData(File file) throws Exception {
         return trackingDataFromJSON(getFileContent(file));
     }
 
-    private String getFileContent(File file) throws Exception{
-        if (!file.exists()) return "";
+    private String getFileContent(File file) throws Exception {
+        if (!file.exists()){
+            return "";
+        }
+
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         String line;
@@ -39,13 +43,13 @@ public class OfflineDataHandler implements DataHandler {
         return stringBuilder.toString();
     }
 
-    private TrackingData trackingDataFromJSON(String json){
+    private TrackingData trackingDataFromJSON(String json) {
         if (json == null || json.trim().equals("")) return new TrackingData(new ArrayList<>());
         final JSONObject jsonObject = new JSONObject(json);
         final JSONArray yearsJSON = jsonObject.getJSONArray("years");
 
         final ArrayList<DataYear> dataYears = new ArrayList<>();
-        for (int i = 0; i<yearsJSON.length(); i++){
+        for (int i = 0; i < yearsJSON.length(); i++) {
             final JSONObject year = yearsJSON.getJSONObject(i);
             dataYears.add(dataYearFromJSON(year));
         }
@@ -61,7 +65,7 @@ public class OfflineDataHandler implements DataHandler {
         final JSONArray dataMonthsJSON = jsonObject.getJSONArray("dataMonths");
         final ArrayList<DataMonth> dataMonths = new ArrayList<>();
 
-        for(int i = 0; i<dataMonthsJSON.length(); i++){
+        for (int i = 0; i < dataMonthsJSON.length(); i++) {
             final JSONObject dataMonthJSON = dataMonthsJSON.getJSONObject(i);
             dataMonths.add(dataMonthFromJSON(dataMonthJSON));
         }
@@ -77,7 +81,7 @@ public class OfflineDataHandler implements DataHandler {
         final JSONArray dataDaysJSON = jsonObject.getJSONArray("dataDays");
         final ArrayList<DataDay> dataDays = new ArrayList<>();
 
-        for(int i = 0; i<dataDaysJSON.length(); i++){
+        for (int i = 0; i < dataDaysJSON.length(); i++) {
             final JSONObject dataDayJSON = dataDaysJSON.getJSONObject(i);
             dataDays.add(dataDayFromJSON(dataDayJSON));
         }
@@ -93,7 +97,7 @@ public class OfflineDataHandler implements DataHandler {
         final JSONArray dataTimesJSON = dataDayJSON.getJSONArray("dataTimes");
         final ArrayList<DataTime> dataTimes = new ArrayList<>();
 
-        for(int i = 0; i<dataTimesJSON.length(); i++){
+        for (int i = 0; i < dataTimesJSON.length(); i++) {
             final JSONObject dataTimeJSON = dataTimesJSON.getJSONObject(i);
             dataTimes.add(dataTimeFromJSON(dataTimeJSON));
         }
