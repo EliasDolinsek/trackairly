@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.StatisticsNavigationController">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.StatisticsNavigationController">
     <top>
         <HBox alignment="CENTER" spacing="8.0" BorderPane.alignment="CENTER">
             <children>

@@ -16,11 +16,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RunningTracker" />
+        <module name="trackairly" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RunningTracker" target="8" />
+      <module name="trackairly" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

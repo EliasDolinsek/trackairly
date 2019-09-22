@@ -2,21 +2,46 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.runningTracker.ui.controller.HomeController">
-   <children>
-      <Text fx:id="txtTime" strokeType="OUTSIDE" strokeWidth="0.0">
-         <font>
-            <Font name="System Bold" size="48.0" />
-         </font>
-      </Text>
-      <Button fx:id="btnTracking" mnemonicParsing="false">
-         <VBox.margin>
-            <Insets top="16.0" />
-         </VBox.margin>
-      </Button>
-   </children>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.HomeController">
+   <center>
+      <VBox alignment="CENTER">
+         <children>
+            <Text fx:id="txtTime" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TODAY">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnTracking" mnemonicParsing="false">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox alignment="CENTER" spacing="8.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="trackairly is able to run in background, just click the close option or the HIDE NOW button below. To re-open it, click on the SHOW option in the Tray-Menu" textAlignment="CENTER" wrappingWidth="492.09619140625">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnHide" mnemonicParsing="false" text="HIDE NOW" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="32.0" left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+</BorderPane>

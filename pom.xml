@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dolinsek.elias</groupId>
-    <artifactId>RunningTracker</artifactId>
+    <artifactId>trackairly</artifactId>
     <version>1.0.0-alpha</version>
     <build>
         <plugins>
@@ -22,7 +22,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.dolinsek.elias.runningTracker.ui.Main</mainClass>
+                            <mainClass>com.dolinsek.elias.trackairly.ui.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -46,5 +46,6 @@
             <artifactId>javafx-controls</artifactId>
             <version>11.0.2</version>
         </dependency>
+
     </dependencies>
 </project>
