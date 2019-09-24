@@ -5,12 +5,16 @@ import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.awt.*;
 import java.io.IOException;
@@ -39,6 +43,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
+        primaryStage.setOnCloseRequest(event -> NotificationManager.displayHideNotificationByConfig());
 
         primaryStage.setTitle("trackairly");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/ic_launcher.png")));
@@ -75,14 +80,14 @@ public class Main extends Application {
         return currentStage;
     }
 
-    private void setupTray(Stage primaryStage){
-        if (!SystemTray.isSupported()){
+    private void setupTray(Stage primaryStage) {
+        if (!SystemTray.isSupported()) {
             System.err.println("No system tray supported");
             return;
         }
 
         final PopupMenu popupMenu = new PopupMenu();
-        final java.awt.Image trayImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/ic_launcher.png"));
+        final java.awt.Image trayImage = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/ic_launcher_tray.png"));
         final TrayIcon trayIcon = new TrayIcon(trayImage);
 
         final SystemTray systemTray = SystemTray.getSystemTray();
@@ -111,18 +116,18 @@ public class Main extends Application {
         }
     }
 
-    private void checkAlreadyRunning(){
-        try{
+    private void checkAlreadyRunning() {
+        try {
             RandomAccessFile randomFile =
-                    new RandomAccessFile("lock.class","rw");
+                    new RandomAccessFile("lock.class", "rw");
 
             FileChannel channel = randomFile.getChannel();
 
-            if(channel.tryLock() == null){
+            if (channel.tryLock() == null) {
                 showAlreadyRunningAlertDialog();
                 System.exit(1);
             }
-        } catch( Exception e ) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

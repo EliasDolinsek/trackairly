@@ -18,5 +18,7 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:11.0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.github.vatbub:mslinks:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:16.0.3" level="project" />
   </component>
 </module>

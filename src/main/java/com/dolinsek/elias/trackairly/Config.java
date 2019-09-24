@@ -11,16 +11,17 @@ public class Config {
     public static File DEFAULT_DATA_FILE = new File("data.json");
 
     private File dataFile;
-    private boolean startTrackerOnLaunch, hideAfterAutostart;
+    private boolean startTrackerOnLaunch, hideAfterAutostart, displayHideNotification;
 
-    public Config(File dataFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart){
+    public Config(File dataFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification){
         this.dataFile = dataFile;
         this.startTrackerOnLaunch = startTrackerOnLaunch;
         this.hideAfterAutostart = hideAfterAutostart;
+        this.displayHideNotification = displayHideNotification;
     }
 
     public static Config defaultConfig(){
-        return new Config(Config.DEFAULT_DATA_FILE, true, true);
+        return new Config(Config.DEFAULT_DATA_FILE, true, true, true);
     }
 
     public static Config defaultFromDataHandler(DataHandler dataHandler) throws Exception {
@@ -55,11 +56,20 @@ public class Config {
         this.hideAfterAutostart = hideAfterAutostart;
     }
 
+    public boolean displayHideNotification() {
+        return displayHideNotification;
+    }
+
+    public void setDisplayHideNotification(boolean displayHideNotification) {
+        this.displayHideNotification = displayHideNotification;
+    }
+
     public JSONObject toJSON(){
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("dataFileLocation", dataFile.getPath());
         jsonObject.put("startTrackerOnLaunch", startTrackerOnLaunch);
         jsonObject.put("hideAfterAutostart", hideAfterAutostart);
+        jsonObject.put("displayHideNotification", displayHideNotification);
         return jsonObject;
     }
 }

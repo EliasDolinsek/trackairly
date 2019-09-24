@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import mslinks.ShellLink;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,7 +22,7 @@ import java.net.URISyntaxException;
 public class SettingsController {
 
     @FXML
-    private CheckBox cbAutoTrackerStart;
+    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification;
 
     @FXML
     private TextField txtDataFileLocation;
@@ -29,17 +30,22 @@ public class SettingsController {
     @FXML
     private Button btnChangeDataFileLocation, btnActivateAutostart, btnDeactivateAutostart;
 
-    @FXML
-    private CheckBox cbHideAfterAutostart;
+    //@FXML
+    //private CheckBox cbHideAfterAutostart;
 
     private final Config config = ConfigProvider.getConfig();
 
-    private final File WINDOWS_AUTOSTART_FILE = new File("C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\trackairly.bat");
+    private final File WINDOWS_AUTOSTART_FILE = new File("C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\trackairly_autostart.lnk");
 
     public void initialize() {
         displaySettings();
         cbAutoTrackerStart.selectedProperty().addListener((observable, oldValue, newValue) -> {
             config.setStartTrackerOnLaunch(newValue);
+            writeConfigAndUpdate();
+        });
+
+        cbDisplayHideNotification.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            config.setDisplayHideNotification(newValue);
             writeConfigAndUpdate();
         });
 
@@ -69,18 +75,22 @@ public class SettingsController {
             displaySettings();
         });
 
+        /*
+        TODO implement
         cbHideAfterAutostart.selectedProperty().addListener((observable, oldValue, newValue) -> {
             config.setHideAfterAutostart(newValue);
             writeConfigAndUpdate();
         });
+        */
     }
 
     private void displaySettings() {
         cbAutoTrackerStart.setSelected(config.startTrackerOnLaunch());
+        cbDisplayHideNotification.setSelected(config.displayHideNotification());
         txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
         btnActivateAutostart.setDisable(WINDOWS_AUTOSTART_FILE.exists());
         btnDeactivateAutostart.setDisable(!WINDOWS_AUTOSTART_FILE.exists());
-        cbHideAfterAutostart.setSelected(config.hideAfterAutostart());
+        //cbHideAfterAutostart.setSelected(config.hideAfterAutostart()); TODO implement
     }
 
     private void writeConfigAndUpdate() {
@@ -101,15 +111,7 @@ public class SettingsController {
     }
 
     private void activateWindowsAutostart() throws IOException, URISyntaxException {
-        if (!WINDOWS_AUTOSTART_FILE.exists()) {
-
-            WINDOWS_AUTOSTART_FILE.createNewFile();
-
-        }
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter(WINDOWS_AUTOSTART_FILE));
-        writer.write("java -jar " + getPathToJar() + " autostart");
-        writer.close();
+        ShellLink.createLink(getPathToJar(), WINDOWS_AUTOSTART_FILE.getPath());
     }
 
     private void deactivateWindowsAutostart() {

@@ -45,6 +45,23 @@
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                </padding>
             </VBox>
+            <VBox fx:id="vBoxActions" alignment="CENTER" spacing="8.0">
+               <children>
+                  <ImageView fx:id="imgActions" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@actions_black_48dp.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="txtActions" strokeType="OUTSIDE" strokeWidth="0.0" text="ACTIONS">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </VBox>
             <VBox fx:id="vBoxSettings" alignment="CENTER" layoutX="10.0" layoutY="109.0" spacing="8.0">
                <children>
                   <ImageView fx:id="imgSettings" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">

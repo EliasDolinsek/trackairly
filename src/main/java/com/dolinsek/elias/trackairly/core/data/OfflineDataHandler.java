@@ -18,14 +18,18 @@ public class OfflineDataHandler implements DataHandler {
     @Override
     public Config getConfig(File file) throws Exception {
         if (!file.exists()) Config.defaultConfig();
+        final String fileContent = getFileContent(file);
+
+        if (fileContent.trim().isEmpty()) return Config.defaultConfig();
         final JSONObject jsonObject = new JSONObject(getFileContent(file));
 
         try {
             final File dataFile = new File(jsonObject.getString("dataFileLocation"));
             final boolean startTrackerOnLaunch = jsonObject.getBoolean("startTrackerOnLaunch");
             final boolean hideAufterAutostart = jsonObject.getBoolean("hideAfterAutostart");
+            final boolean displayHideNotification = jsonObject.getBoolean("displayHideNotification");
 
-            return new Config(dataFile, startTrackerOnLaunch, hideAufterAutostart);
+            return new Config(dataFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification);
         } catch (Exception e) {
             return Config.defaultConfig();
         }

@@ -21,13 +21,13 @@ public class MainController {
     private BorderPane root;
 
     @FXML
-    private VBox vBoxHome, vBoxStatistics, vBoxSettings;
+    private VBox vBoxHome, vBoxStatistics, vBoxSettings, vBoxActions;
 
     @FXML
-    private ImageView imgHome, imgStatistics, imgSettings;
+    private ImageView imgHome, imgStatistics, imgSettings, imgActions;
 
     @FXML
-    private Text txtHome, txtStatistics, txtSettings;
+    private Text txtHome, txtStatistics, txtSettings, txtActions;
 
     @FXML
     private AnchorPane contentRoot; //TODO also in fxml
@@ -49,6 +49,16 @@ public class MainController {
 
             txtStatistics.setFill(Paint.valueOf("#ffffff"));
             imgStatistics.setImage(new Image(getClass().getResourceAsStream("/statistics_white_48dp.png")));
+
+            root.setCenter(statistics);
+        });
+
+        vBoxActions.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            setTextsFillBlack();
+            setBlackImages();
+
+            txtActions.setFill(Paint.valueOf("#ffffff"));
+            imgActions.setImage(new Image(getClass().getResourceAsStream("/actions_white_48dp.png")));
 
             root.setCenter(statistics);
         });
@@ -78,12 +88,14 @@ public class MainController {
     private void setTextsFillBlack(){
         txtHome.setFill(Paint.valueOf("#757de8"));
         txtStatistics.setFill(Paint.valueOf("#757de8"));
+        txtActions.setFill(Paint.valueOf("#757de8"));
         txtSettings.setFill(Paint.valueOf("#757de8"));
     }
 
     private void setBlackImages(){
         imgHome.setImage(new Image(getClass().getResourceAsStream("/home_black_48dp.png")));
         imgStatistics.setImage(new Image(getClass().getResourceAsStream("/statistics_black_48dp.png")));
+        imgActions.setImage(new Image(getClass().getResourceAsStream("/actions_black_48dp.png")));
         imgSettings.setImage(new Image(getClass().getResourceAsStream("/settings_black_48dp.png")));
     }
 }

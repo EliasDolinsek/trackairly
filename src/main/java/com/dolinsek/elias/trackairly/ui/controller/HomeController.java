@@ -6,6 +6,7 @@ import com.dolinsek.elias.trackairly.core.times.DataCollection;
 import com.dolinsek.elias.trackairly.core.times.OnTimeChangedListener;
 import com.dolinsek.elias.trackairly.core.times.Tracker;
 import com.dolinsek.elias.trackairly.ui.Main;
+import com.dolinsek.elias.trackairly.ui.NotificationManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -46,7 +47,10 @@ public class HomeController {
             }
         });
 
-        btnHide.setOnAction(event -> Main.getCurrentStage().hide());
+        btnHide.setOnAction(event -> {
+            Main.getCurrentStage().hide();
+            NotificationManager.displayHideNotificationByConfig();
+        });
 
         if (ConfigProvider.getConfig().startTrackerOnLaunch()) {
             startTracker();

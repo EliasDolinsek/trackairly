@@ -6,7 +6,11 @@
 
     <groupId>com.dolinsek.elias</groupId>
     <artifactId>trackairly</artifactId>
-    <version>1.0.0-alpha</version>
+    <version>1.0.1-alpha</version>
+
+    <distributionManagement>
+
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
@@ -47,5 +51,10 @@
             <version>11.0.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.vatbub</groupId>
+            <artifactId>mslinks</artifactId>
+            <version>1.0.5</version>
+        </dependency>
     </dependencies>
 </project>
