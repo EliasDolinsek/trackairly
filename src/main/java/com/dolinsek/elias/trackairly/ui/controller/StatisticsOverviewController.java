@@ -35,13 +35,13 @@ public class StatisticsOverviewController {
             totalTime += dataYear.getTotalRunningTime();
         }
 
-        txtTotal.setText(DataCollection.getTotalRunningTimeAsString(totalTime));
+        txtTotal.setText(DataCollection.getTotalRunningTimeAsString(totalTime, false));
     }
 
     private void setYearText() {
         final DataYear dataYear = DataProvider.getThisDataYear();
         if (dataYear != null) {
-            txtThisYear.setText(DataCollection.getTotalRunningTimeAsString(dataYear.getTotalRunningTime()));
+            txtThisYear.setText(DataCollection.getTotalRunningTimeAsString(dataYear.getTotalRunningTime(), false));
         } else {
             txtThisYear.setText("N/A");
         }
@@ -50,7 +50,7 @@ public class StatisticsOverviewController {
     private void setMonthText() {
         final DataMonth dataMonth = DataProvider.getThisDataMonth(DataProvider.getThisDataYear());
         if (dataMonth != null){
-            txtThisMonth.setText(DataCollection.getTotalRunningTimeAsString(dataMonth.getTotalRunningTime()));
+            txtThisMonth.setText(DataCollection.getTotalRunningTimeAsString(dataMonth.getTotalRunningTime(), false));
         } else {
             txtThisMonth.setText("N/A");
         }
@@ -59,7 +59,7 @@ public class StatisticsOverviewController {
     private void setTodayText(){
         final DataDay dataDay = DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear()));
         if (dataDay != null){
-            txtToday.setText(DataCollection.getTotalRunningTimeAsString(dataDay.getTotalRunningTime()));
+            txtToday.setText(DataCollection.getTotalRunningTimeAsString(dataDay.getTotalRunningTime(), false));
         } else {
             txtToday.setText("N/A");
         }
@@ -67,7 +67,7 @@ public class StatisticsOverviewController {
 
     private void setThisWeekText(){
         try {
-            txtThisWeek.setText(DataCollection.getTotalRunningTimeAsString(getThisWeekTimes()));
+            txtThisWeek.setText(DataCollection.getTotalRunningTimeAsString(getThisWeekTimes(), false));
         } catch (Exception e){
             txtThisWeek.setText("N/A");
         }

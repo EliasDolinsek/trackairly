@@ -11,17 +11,18 @@ public class Config {
     public static File DEFAULT_DATA_FILE = new File("data.json");
 
     private File dataFile;
-    private boolean startTrackerOnLaunch, hideAfterAutostart, displayHideNotification;
+    private boolean startTrackerOnLaunch, hideAfterAutostart, displayHideNotification, displayActionNotifications;
 
-    public Config(File dataFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification){
+    public Config(File dataFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification, boolean displayActionNotifications){
         this.dataFile = dataFile;
         this.startTrackerOnLaunch = startTrackerOnLaunch;
         this.hideAfterAutostart = hideAfterAutostart;
         this.displayHideNotification = displayHideNotification;
+        this.displayActionNotifications = displayActionNotifications;
     }
 
     public static Config defaultConfig(){
-        return new Config(Config.DEFAULT_DATA_FILE, true, true, true);
+        return new Config(Config.DEFAULT_DATA_FILE, true, true, true, true);
     }
 
     public static Config defaultFromDataHandler(DataHandler dataHandler) throws Exception {
@@ -64,12 +65,22 @@ public class Config {
         this.displayHideNotification = displayHideNotification;
     }
 
+    public void setDisplayActionNotifications(boolean displayActionNotifications) {
+        this.displayActionNotifications = displayActionNotifications;
+    }
+
+    public boolean displayActionNotifications() {
+        return displayActionNotifications;
+    }
+
     public JSONObject toJSON(){
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("dataFileLocation", dataFile.getPath());
         jsonObject.put("startTrackerOnLaunch", startTrackerOnLaunch);
         jsonObject.put("hideAfterAutostart", hideAfterAutostart);
         jsonObject.put("displayHideNotification", displayHideNotification);
+        jsonObject.put("displayActionNotifications", displayActionNotifications);
+
         return jsonObject;
     }
 }

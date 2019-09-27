@@ -22,7 +22,7 @@ import java.net.URISyntaxException;
 public class SettingsController {
 
     @FXML
-    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification;
+    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification, cbDisplayActionNotifications;
 
     @FXML
     private TextField txtDataFileLocation;
@@ -46,6 +46,11 @@ public class SettingsController {
 
         cbDisplayHideNotification.selectedProperty().addListener((observable, oldValue, newValue) -> {
             config.setDisplayHideNotification(newValue);
+            writeConfigAndUpdate();
+        });
+
+        cbDisplayActionNotifications.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            config.setDisplayActionNotifications(newValue);
             writeConfigAndUpdate();
         });
 
@@ -87,6 +92,7 @@ public class SettingsController {
     private void displaySettings() {
         cbAutoTrackerStart.setSelected(config.startTrackerOnLaunch());
         cbDisplayHideNotification.setSelected(config.displayHideNotification());
+        cbDisplayActionNotifications.setSelected(config.displayActionNotifications());
         txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
         btnActivateAutostart.setDisable(WINDOWS_AUTOSTART_FILE.exists());
         btnDeactivateAutostart.setDisable(!WINDOWS_AUTOSTART_FILE.exists());

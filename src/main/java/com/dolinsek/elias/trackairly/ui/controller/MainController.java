@@ -32,11 +32,12 @@ public class MainController {
     @FXML
     private AnchorPane contentRoot; //TODO also in fxml
 
-    private final Parent home, statistics, settings;
+    private final Parent home, statistics, actions, settings;
 
     public MainController() throws IOException {
         home = FXMLLoader.load(getClass().getResource("/home.fxml"));
         statistics = FXMLLoader.load(getClass().getResource("/statistics_navigation.fxml"));
+        actions = FXMLLoader.load(getClass().getResource("/actions.fxml"));
         settings = FXMLLoader.load(getClass().getResource("/settings.fxml"));
     }
 
@@ -60,7 +61,7 @@ public class MainController {
             txtActions.setFill(Paint.valueOf("#ffffff"));
             imgActions.setImage(new Image(getClass().getResourceAsStream("/actions_white_48dp.png")));
 
-            root.setCenter(statistics);
+            root.setCenter(actions);
         });
         vBoxSettings.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             setTextsFillBlack();

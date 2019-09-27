@@ -25,15 +25,12 @@ public class HomeController {
 
     private Tracker tracker = DataProvider.getTracker();
 
-    private int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-
-    private final OnTimeChangedListener onTimeChangedListener = () -> {
-        checkAndReactToDateChange();
-        update();
-    };
+    private final OnTimeChangedListener onTimeChangedListener = this::update;
 
     public void initialize() {
+        DataProvider.getTracker().onTimeChangedListeners.add(onTimeChangedListener);
         update();
+
         btnTracking.setOnAction(event -> {
             try {
                 if (tracker.isRunning()) {
@@ -43,7 +40,7 @@ public class HomeController {
                     startTracker();
                 }
             } catch (Exception e) {
-                System.err.println(e);
+                e.printStackTrace();
             }
         });
 
@@ -59,7 +56,7 @@ public class HomeController {
 
     private void startTracker() {
         try {
-            tracker.start(onTimeChangedListener);
+            tracker.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,31 +64,21 @@ public class HomeController {
 
     private void update() {
         displayTexts();
-        if (tracker.isRunning()) {
-            btnTracking.setText("STOP TRACKING");
-        } else {
-            btnTracking.setText("START TRACKING");
-        }
+        Platform.runLater(() -> {
+            if (tracker.isRunning()) {
+                btnTracking.setText("STOP TRACKING");
+            } else {
+                btnTracking.setText("START TRACKING");
+            }
+        });
     }
 
     private void displayTexts() {
         try {
-            txtTime.setText(DataCollection.getTotalRunningTimeAsString(DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear())).getTotalRunningTime()));
+            final long runningTime = DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear())).getTotalRunningTime();
+            txtTime.setText(DataCollection.getTotalRunningTimeAsString(runningTime, true));
         } catch (Exception e) {
             txtTime.setText(tracker.getRunningTimeAsString());
-        }
-    }
-
-    private void checkAndReactToDateChange() {
-        final int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        if (day != currentDay) {
-            try {
-                tracker.stopForDayChange();
-                tracker.startForDayChange(onTimeChangedListener);
-                day = currentDay;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

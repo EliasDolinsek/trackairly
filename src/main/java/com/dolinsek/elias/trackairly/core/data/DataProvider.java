@@ -1,18 +1,23 @@
 package com.dolinsek.elias.trackairly.core.data;
 
 import com.dolinsek.elias.trackairly.ConfigProvider;
+import com.dolinsek.elias.trackairly.core.Action;
 import com.dolinsek.elias.trackairly.core.times.*;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class DataProvider {
 
     private static TrackingData trackingData;
     private static Tracker tracker;
+    private static ArrayList<Action> actions;
 
     public static void init() throws Exception {
-        trackingData = new OfflineDataHandler().getData(ConfigProvider.getConfig().getDataFile());
+        final OfflineDataHandler offlineDataHandler = new OfflineDataHandler();
+        trackingData = offlineDataHandler.getData(ConfigProvider.getConfig().getDataFile());
         tracker = new Tracker(trackingData);
+        //actions = offlineDataHandler.getActions(ConfigP)
     }
 
     public static TrackingData getTrackingData() {

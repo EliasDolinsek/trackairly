@@ -3,48 +3,106 @@ package com.dolinsek.elias.trackairly.core.times;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.function.Consumer;
 
 public class Tracker {
 
+    private int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+
     private DataTime dataTime;
     private TrackingData trackingData;
+
+    private volatile boolean isRunning = false;
+    private long seconds, previousRecordTime;
+
+    private Timer timer = new Timer();
+
+    public ArrayList<OnTimeChangedListener> onTimeChangedListeners = new ArrayList<>();
 
     public Tracker(TrackingData trackingData) {
         this.trackingData = trackingData;
     }
 
-    public void start(OnTimeChangedListener listener) throws IOException {
-        if(dataTime != null) stop();
+    public void start() throws IOException {
+        if(isRunning) stop();
+        seconds = 0;
+        isRunning = true;
+
         dataTime = new DataTime();
         trackingData.addDataTime(dataTime);
-        dataTime.start(listener);
+
+        dataTime.setStartTime(System.currentTimeMillis());
+
+        startTimer();
     }
 
     public void stop() throws IOException {
+        stop(System.currentTimeMillis());
+    }
+
+    private void stop(long time) throws IOException {
         if (dataTime != null && isRunning()){
-            dataTime.stop();
+            timer.cancel();
+            isRunning = false;
+            dataTime.setStopTime(time);
             new OfflineDataHandler().writeData(trackingData, ConfigProvider.getConfig().getDataFile());
         }
     }
 
-    public void stopForDayChange() throws IOException {
+    public void stopHidden() throws IOException {
         dataTime.setDayChangeStop(true);
         stop();
     }
 
-    public void startForDayChange(OnTimeChangedListener listener) throws IOException {
+    public void startHidden() throws IOException {
         dataTime.setDayChangeStop(true);
-        start(listener);
+        start();
     }
 
     public boolean isRunning(){
-        if (dataTime == null) return false;
-        return dataTime.isRunning();
+        return isRunning;
     }
 
     public String getRunningTimeAsString(){
-        if (dataTime == null || !dataTime.isRunning()) return "stopped";
-        return dataTime.getTotalRunningTimeAsString(dataTime.getTotalRunningTime());
+        if (dataTime == null || !isRunning) return "stopped";
+        return DataCollection.getTotalRunningTimeAsString(dataTime.getTotalRunningTime(), true);
+    }
+
+    private void startTimer(){
+        previousRecordTime = System.currentTimeMillis();
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    checkAndReactToDateChange();
+                    seconds++;
+                    dataTime.setRunningTime(seconds * 1000);
+                    onTimeChangedListeners.forEach(OnTimeChangedListener::onSecondChanged);
+                    previousRecordTime = System.currentTimeMillis();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 1000, 1000);
+    }
+
+    private void checkAndReactToDateChange() {
+        final int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        if (day != currentDay) {
+            try {
+                stopHidden();
+                startHidden();
+                day = currentDay;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

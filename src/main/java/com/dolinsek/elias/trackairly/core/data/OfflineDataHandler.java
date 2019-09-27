@@ -28,8 +28,9 @@ public class OfflineDataHandler implements DataHandler {
             final boolean startTrackerOnLaunch = jsonObject.getBoolean("startTrackerOnLaunch");
             final boolean hideAufterAutostart = jsonObject.getBoolean("hideAfterAutostart");
             final boolean displayHideNotification = jsonObject.getBoolean("displayHideNotification");
+            final boolean displayActionNotifications = jsonObject.getBoolean("displayActionNotifications");
 
-            return new Config(dataFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification);
+            return new Config(dataFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification, displayActionNotifications);
         } catch (Exception e) {
             return Config.defaultConfig();
         }
@@ -119,7 +120,15 @@ public class OfflineDataHandler implements DataHandler {
     }
 
     private DataTime dataTimeFromJSON(JSONObject dataTimeJSON) {
-        return new DataTime(dataTimeJSON.getLong("startTime"), dataTimeJSON.getLong("stopTime"), dataTimeJSON.getBoolean("dayChangeStart"), dataTimeJSON.getBoolean("dayChangeStop"));
+        final long startTime = dataTimeJSON.getLong("startTime");
+        final long stopTime = dataTimeJSON.getLong("stopTime");
+        long runningTime = stopTime - startTime;
+
+        try {
+            runningTime = dataTimeJSON.getLong("runningTime");
+        } catch (Exception ignored){}
+
+        return new DataTime(startTime, stopTime, runningTime, dataTimeJSON.getBoolean("dayChangeStart"), dataTimeJSON.getBoolean("dayChangeStop"));
     }
 
     public void writeData(TrackingData trackingData, File file) throws IOException {
