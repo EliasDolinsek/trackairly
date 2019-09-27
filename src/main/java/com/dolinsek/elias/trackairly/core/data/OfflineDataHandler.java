@@ -2,18 +2,14 @@ package com.dolinsek.elias.trackairly.core.data;
 
 
 import com.dolinsek.elias.trackairly.Config;
+import com.dolinsek.elias.trackairly.core.timeEvents.Action;
 import com.dolinsek.elias.trackairly.core.times.*;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class OfflineDataHandler implements DataHandler {
-
-    public Config getConfigFromDefaultLocation() throws Exception {
-        return getConfig(Config.DEFAULT_CONFIG_FILE);
-    }
 
     @Override
     public Config getConfig(File file) throws Exception {
@@ -22,22 +18,33 @@ public class OfflineDataHandler implements DataHandler {
 
         if (fileContent.trim().isEmpty()) return Config.defaultConfig();
         final JSONObject jsonObject = new JSONObject(getFileContent(file));
-
-        try {
-            final File dataFile = new File(jsonObject.getString("dataFileLocation"));
-            final boolean startTrackerOnLaunch = jsonObject.getBoolean("startTrackerOnLaunch");
-            final boolean hideAufterAutostart = jsonObject.getBoolean("hideAfterAutostart");
-            final boolean displayHideNotification = jsonObject.getBoolean("displayHideNotification");
-            final boolean displayActionNotifications = jsonObject.getBoolean("displayActionNotifications");
-
-            return new Config(dataFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification, displayActionNotifications);
-        } catch (Exception e) {
-            return Config.defaultConfig();
-        }
+        return Config.defaultConfig().fromJSON(jsonObject);
     }
 
-    public TrackingData getData(File file) throws Exception {
+    public TrackingData getTrackingData(File file) throws Exception {
         return trackingDataFromJSON(getFileContent(file));
+    }
+
+    @Override
+    public ArrayList<Action> getActions(File file) throws Exception {
+        return actionsFromJSON(getFileContent(file));
+    }
+
+    @Override
+    public void writeActions(ArrayList<Action> actions, File file) throws Exception {
+        if (!file.exists()) file.createNewFile();
+        writeToFile(Action.actionsToJSON(actions).toString(), file);
+    }
+
+    private ArrayList<Action> actionsFromJSON(String json){
+        final JSONObject jsonObject = new JSONObject(json);
+        ArrayList<Action> actions = new ArrayList<>();
+
+        try {
+            actions = Action.actionsFromJSONArray(jsonObject.getJSONArray("actions"));
+        } catch (Exception ignored) {}
+
+        return actions;
     }
 
     private String getFileContent(File file) throws Exception {
@@ -58,80 +65,11 @@ public class OfflineDataHandler implements DataHandler {
     }
 
     private TrackingData trackingDataFromJSON(String json) {
-        if (json == null || json.trim().equals("")) return new TrackingData(new ArrayList<>());
-        final JSONObject jsonObject = new JSONObject(json);
-        final JSONArray yearsJSON = jsonObject.getJSONArray("years");
-
-        final ArrayList<DataYear> dataYears = new ArrayList<>();
-        for (int i = 0; i < yearsJSON.length(); i++) {
-            final JSONObject year = yearsJSON.getJSONObject(i);
-            dataYears.add(dataYearFromJSON(year));
-        }
-
-        return new TrackingData(dataYears);
+        if (json == null || json.trim().equals("")) return TrackingData.defaultTrackingData();
+        return TrackingData.defaultTrackingData().fromJSON(new JSONObject(json));
     }
 
-    private DataYear dataYearFromJSON(JSONObject json) {
-        return new DataYear(json.getInt("year"), dataMonthsFromJSON(json));
-    }
-
-    private ArrayList<DataMonth> dataMonthsFromJSON(JSONObject jsonObject) {
-        final JSONArray dataMonthsJSON = jsonObject.getJSONArray("dataMonths");
-        final ArrayList<DataMonth> dataMonths = new ArrayList<>();
-
-        for (int i = 0; i < dataMonthsJSON.length(); i++) {
-            final JSONObject dataMonthJSON = dataMonthsJSON.getJSONObject(i);
-            dataMonths.add(dataMonthFromJSON(dataMonthJSON));
-        }
-
-        return dataMonths;
-    }
-
-    private DataMonth dataMonthFromJSON(JSONObject jsonObject) {
-        return new DataMonth(jsonObject.getInt("month"), dataDaysFromJSON(jsonObject));
-    }
-
-    private ArrayList<DataDay> dataDaysFromJSON(JSONObject jsonObject) {
-        final JSONArray dataDaysJSON = jsonObject.getJSONArray("dataDays");
-        final ArrayList<DataDay> dataDays = new ArrayList<>();
-
-        for (int i = 0; i < dataDaysJSON.length(); i++) {
-            final JSONObject dataDayJSON = dataDaysJSON.getJSONObject(i);
-            dataDays.add(dataDayFromJSON(dataDayJSON));
-        }
-
-        return dataDays;
-    }
-
-    private DataDay dataDayFromJSON(JSONObject dataDayJSON) {
-        return new DataDay(dataDayJSON.getInt("day"), dataTimesFromJSON(dataDayJSON));
-    }
-
-    private ArrayList<DataTime> dataTimesFromJSON(JSONObject dataDayJSON) {
-        final JSONArray dataTimesJSON = dataDayJSON.getJSONArray("dataTimes");
-        final ArrayList<DataTime> dataTimes = new ArrayList<>();
-
-        for (int i = 0; i < dataTimesJSON.length(); i++) {
-            final JSONObject dataTimeJSON = dataTimesJSON.getJSONObject(i);
-            dataTimes.add(dataTimeFromJSON(dataTimeJSON));
-        }
-
-        return dataTimes;
-    }
-
-    private DataTime dataTimeFromJSON(JSONObject dataTimeJSON) {
-        final long startTime = dataTimeJSON.getLong("startTime");
-        final long stopTime = dataTimeJSON.getLong("stopTime");
-        long runningTime = stopTime - startTime;
-
-        try {
-            runningTime = dataTimeJSON.getLong("runningTime");
-        } catch (Exception ignored){}
-
-        return new DataTime(startTime, stopTime, runningTime, dataTimeJSON.getBoolean("dayChangeStart"), dataTimeJSON.getBoolean("dayChangeStop"));
-    }
-
-    public void writeData(TrackingData trackingData, File file) throws IOException {
+    public void writeTrackingData(TrackingData trackingData, File file) throws IOException {
         if (!file.exists()) {
             file.createNewFile();
         }

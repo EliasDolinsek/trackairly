@@ -2,17 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <ListView fx:id="listActions" prefHeight="200.0" prefWidth="333.0" BorderPane.alignment="CENTER" />
    </center>
@@ -23,41 +23,18 @@
                <children>
                   <TextField fx:id="txtName" promptText="Name" />
                   <TextField fx:id="txtTime" promptText="01:00" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Trigger time">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Text>
+                  <RadioButton fx:id="rbTimeOfDay" mnemonicParsing="false" text="Time of day" />
+                  <RadioButton fx:id="rbRunningTime" mnemonicParsing="false" text="Running time" />
+                  <VBox spacing="8.0" />
                   <Separator prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="8.0" top="8.0" />
                      </VBox.margin></Separator>
-                  <CheckBox fx:id="cbDisplayNotification" mnemonicParsing="false" text="Display notification" />
-                  <TextField fx:id="txtNotification" promptText="Notification">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin></TextField>
-                  <Separator prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets bottom="8.0" top="8.0" />
-                     </VBox.margin></Separator>
-                  <CheckBox fx:id="cbShutdownDevice" mnemonicParsing="false" text="Shutdown device" />
-                  <CheckBox fx:id="cbExitTrackairly" mnemonicParsing="false" text="Exit trackairly" />
-                  <Separator prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets bottom="8.0" top="8.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <CheckBox fx:id="cbRunCustomCommand" mnemonicParsing="false" text="Run custom command">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </CheckBox>
-                  <TextField fx:id="txtCommand" promptText="shutdown /s">
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </TextField>
+                  <ScrollPane>
+                     <content>
+                        <VBox fx:id="vboxActions" />
+                     </content>
+                  </ScrollPane>
                </children>
                <BorderPane.margin>
                   <Insets left="16.0" />

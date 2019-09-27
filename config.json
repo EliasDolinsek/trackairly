@@ -1,1 +1,1 @@
-{"startTrackerOnLaunch":true,"displayHideNotification":true,"dataFileLocation":"data.json","hideAfterAutostart":true,"displayActionNotifications":true}
+{"startTrackerOnLaunch":true,"displayHideNotification":true,"dataFileLocation":"data.json","hideAfterAutostart":true,"displayActionNotifications":true,"actionsFileLocation":"actions.json","exitOnCloseRequest":true}

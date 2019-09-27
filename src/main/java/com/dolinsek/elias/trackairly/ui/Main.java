@@ -5,16 +5,12 @@ import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.awt.*;
 import java.io.IOException;
@@ -43,7 +39,14 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
-        primaryStage.setOnCloseRequest(event -> NotificationManager.displayHideNotificationByConfig());
+        primaryStage.setOnCloseRequest(event -> {
+            if (ConfigProvider.getConfig().exitOnCloseRequest()){
+                Platform.exit();
+                System.exit(1);
+            } else {
+                NotificationManager.displayHideNotificationByConfig();
+            }
+        });
 
         primaryStage.setTitle("trackairly");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/ic_launcher.png")));
@@ -68,7 +71,7 @@ public class Main extends Application {
 
     private void stopAndSave() throws IOException {
         DataProvider.getTracker().stop();
-        new OfflineDataHandler().writeData(DataProvider.getTrackingData(), ConfigProvider.getConfig().getDataFile());
+        new OfflineDataHandler().writeTrackingData(DataProvider.getTrackingData(), ConfigProvider.getConfig().getDataFile());
     }
 
     private void initApp() throws Exception {

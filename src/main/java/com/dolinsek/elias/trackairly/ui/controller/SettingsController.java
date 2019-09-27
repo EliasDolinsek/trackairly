@@ -4,8 +4,6 @@ import com.dolinsek.elias.trackairly.Config;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.ui.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -13,16 +11,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import mslinks.ShellLink;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class SettingsController {
 
     @FXML
-    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification, cbDisplayActionNotifications;
+    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification, cbDisplayActionNotifications, cbExitOnCloseRequest;
 
     @FXML
     private TextField txtDataFileLocation;
@@ -51,6 +47,11 @@ public class SettingsController {
 
         cbDisplayActionNotifications.selectedProperty().addListener((observable, oldValue, newValue) -> {
             config.setDisplayActionNotifications(newValue);
+            writeConfigAndUpdate();
+        });
+
+        cbExitOnCloseRequest.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            config.setExitOnCloseRequest(newValue);
             writeConfigAndUpdate();
         });
 
@@ -93,6 +94,7 @@ public class SettingsController {
         cbAutoTrackerStart.setSelected(config.startTrackerOnLaunch());
         cbDisplayHideNotification.setSelected(config.displayHideNotification());
         cbDisplayActionNotifications.setSelected(config.displayActionNotifications());
+        cbExitOnCloseRequest.setSelected(config.exitOnCloseRequest());
         txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
         btnActivateAutostart.setDisable(WINDOWS_AUTOSTART_FILE.exists());
         btnDeactivateAutostart.setDisable(!WINDOWS_AUTOSTART_FILE.exists());
@@ -110,7 +112,7 @@ public class SettingsController {
 
     private void writeData() {
         try {
-            ConfigProvider.getDataHandler().writeData(DataProvider.getTrackingData(), config.getDataFile());
+            ConfigProvider.getDataHandler().writeTrackingData(DataProvider.getTrackingData(), config.getDataFile());
         } catch (Exception e) {
             e.printStackTrace();
         }

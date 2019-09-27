@@ -1,5 +1,6 @@
 package com.dolinsek.elias.trackairly.core.times;
 
+import com.dolinsek.elias.trackairly.core.data.DataObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -8,12 +9,20 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class TrackingData {
+public class TrackingData implements DataObject {
 
     private ArrayList<DataYear> dataYears;
 
     public TrackingData(ArrayList<DataYear> years) {
         this.dataYears = years;
+    }
+
+    private TrackingData(){
+        dataYears = new ArrayList<>();
+    }
+
+    public static TrackingData defaultTrackingData(){
+        return new TrackingData();
     }
 
     public ArrayList<DataYear> getDataYears() {
@@ -34,6 +43,26 @@ public class TrackingData {
         trackingDataJSON.put("years", yearsJSON);
 
         return trackingDataJSON;
+    }
+
+    @Override
+    public TrackingData fromJSON(JSONObject jsonObject) {
+        ArrayList<DataYear> dataYears = new ArrayList<>();
+
+        try {
+            dataYears = dataYearsFromJSONArray(jsonObject.getJSONArray("years"));
+        } catch (Exception ignored) {}
+
+        return new TrackingData(dataYears);
+    }
+
+    private ArrayList<DataYear> dataYearsFromJSONArray(JSONArray jsonArray){
+        ArrayList<DataYear> dataYears = new ArrayList<>();
+        for (int i = 0; i<jsonArray.length(); i++){
+            dataYears.add(DataYear.defaultDataYear().fromJSON(jsonArray.getJSONObject(i)));
+        }
+
+        return dataYears;
     }
 
     public void addDataTime(DataTime dataTime){

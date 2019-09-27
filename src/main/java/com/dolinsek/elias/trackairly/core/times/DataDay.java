@@ -1,5 +1,6 @@
 package com.dolinsek.elias.trackairly.core.times;
 
+import com.dolinsek.elias.trackairly.core.data.DataObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,6 +16,14 @@ public class DataDay extends DataCollection {
         this.dataTimes = dataTimes;
     }
 
+    private DataDay(){
+        day = 0;
+        dataTimes = new ArrayList<>();
+    }
+
+    public static DataDay defaultDataDay(){
+        return new DataDay();
+    }
     public static DataDay emptyDataDay(int day){
         return new DataDay(day, new ArrayList<>());
     }
@@ -27,6 +36,7 @@ public class DataDay extends DataCollection {
         return dataTimes;
     }
 
+    @Override
     public JSONObject toJSON() {
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("day", day);
@@ -38,6 +48,31 @@ public class DataDay extends DataCollection {
         jsonObject.put("dataTimes", jsonArray);
 
         return jsonObject;
+    }
+
+    @Override
+    public DataDay fromJSON(JSONObject jsonObject) {
+        int day = 0;
+        ArrayList<DataTime> dataTimes = new ArrayList<>();
+
+        try {
+            day = jsonObject.getInt("day");
+        } catch (Exception ignore) {}
+
+        try {
+            dataTimes = dataTimesFromJSONArray(jsonObject.getJSONArray("dataTimes"));
+        } catch (Exception ignore) {}
+
+        return new DataDay(day, dataTimes);
+    }
+
+    private ArrayList<DataTime> dataTimesFromJSONArray(JSONArray jsonArray){
+        ArrayList<DataTime> dataTimes = new ArrayList<>();
+        for (int i = 0; i<jsonArray.length(); i++){
+            dataTimes.add(DataTime.defaultDataTime().fromJSON(jsonArray.getJSONObject(i)));
+        }
+
+        return dataTimes;
     }
 
     public void addDataTime(DataTime dataTime){

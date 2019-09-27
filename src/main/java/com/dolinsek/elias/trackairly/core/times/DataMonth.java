@@ -19,7 +19,11 @@ public class DataMonth extends DataCollection{
         this.dataDays = dataDays;
     }
 
-    public static DataMonth emptyDataMonth(int month){
+    public static DataMonth defaultDataMonth(){
+        return defaultDataMonth(0);
+    }
+
+    public static DataMonth defaultDataMonth(int month){
         return new DataMonth(month, new ArrayList<>());
     }
 
@@ -56,6 +60,31 @@ public class DataMonth extends DataCollection{
         jsonObject.put("dataDays", jsonArray);
 
         return jsonObject;
+    }
+
+    @Override
+    public DataMonth fromJSON(JSONObject jsonObject) {
+        int month = 0;
+        ArrayList<DataDay> dataDays = new ArrayList<>();
+
+        try {
+            month = jsonObject.getInt("month");
+        } catch (Exception ignore) {}
+
+        try {
+            dataDays = dataDaysFromJSONArray(jsonObject.getJSONArray("dataDays"));
+        } catch (Exception ignore) {}
+
+        return new DataMonth(month, dataDays);
+    }
+
+    private ArrayList<DataDay> dataDaysFromJSONArray(JSONArray jsonArray){
+        final ArrayList<DataDay> dataDays = new ArrayList<>();
+        for (int i = 0; i<jsonArray.length(); i++){
+            dataDays.add(DataDay.defaultDataDay().fromJSON(jsonArray.getJSONObject(i)));
+        }
+
+        return dataDays;
     }
 
     public void addDataTime(DataTime dataTime){

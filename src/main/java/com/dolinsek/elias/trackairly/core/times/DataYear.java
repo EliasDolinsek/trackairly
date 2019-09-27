@@ -1,5 +1,6 @@
 package com.dolinsek.elias.trackairly.core.times;
 
+import com.dolinsek.elias.trackairly.core.data.DataObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,6 +19,15 @@ public class DataYear extends DataCollection {
         this.dataMonths = dataMonths;
     }
 
+    private DataYear() {
+        year = 2019;
+        dataMonths = new ArrayList<>();
+    }
+
+    public static DataYear defaultDataYear(){
+        return new DataYear();
+    }
+
     public static DataYear now(){
         return new DataYear(Calendar.getInstance().get(Calendar.YEAR), new ArrayList<>());
     }
@@ -34,7 +44,7 @@ public class DataYear extends DataCollection {
         final ArrayList<DataMonth> allDataMonths = new ArrayList<>(getDataMonths());
         for (int i = 0; i<11; i++){
             if (getDataMonthByMonth(i, allDataMonths) == null){
-                allDataMonths.add(i, DataMonth.emptyDataMonth(i));
+                allDataMonths.add(i, DataMonth.defaultDataMonth(i));
             }
         }
 
@@ -91,6 +101,31 @@ public class DataYear extends DataCollection {
         jsonObject.put("dataMonths", jsonArray);
 
         return jsonObject;
+    }
+
+    @Override
+    public DataYear fromJSON(JSONObject jsonObject) {
+        int year = 2019;
+        ArrayList<DataMonth> dataMonths = new ArrayList<>();
+
+        try {
+            year = jsonObject.getInt("year");
+        } catch (Exception ignored) {}
+
+        try {
+            dataMonths = dataMonthsFromJSONArray(jsonObject.getJSONArray("dataMonths"));
+        } catch (Exception ignored) {}
+
+        return new DataYear(year, dataMonths);
+    }
+
+    private ArrayList<DataMonth> dataMonthsFromJSONArray(JSONArray jsonArray){
+        ArrayList<DataMonth> dataMonths = new ArrayList<>();
+        for (int i = 0; i<jsonArray.length(); i++){
+            dataMonths.add(DataMonth.defaultDataMonth().fromJSON(jsonArray.getJSONObject(i)));
+        }
+
+        return dataMonths;
     }
 
     @Override

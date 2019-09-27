@@ -1,15 +1,19 @@
 package com.dolinsek.elias.trackairly.core.times;
 
+import com.dolinsek.elias.trackairly.core.data.DataObject;
 import org.json.JSONObject;
-
-import java.util.Timer;
 
 public class DataTime extends DataCollection {
 
     private long startTime, stopTime, runningTime; //in millis
-    private volatile boolean dayChangeStart, dayChangeStop;
+    private volatile boolean hiddenStart, hiddenStop;
 
-    public DataTime() {
+    private DataTime() {
+        startTime = 0;
+        stopTime = 0;
+        runningTime = 0;
+        hiddenStart = false;
+        hiddenStop = false;
     }
 
     public DataTime(long startTime, long stopTime, long runningTime) {
@@ -18,19 +22,24 @@ public class DataTime extends DataCollection {
         this.runningTime = runningTime;
     }
 
-    public DataTime(long startTime, long stopTime, long runningTime, boolean dayChangeStart, boolean dayChangeStop) {
+    public DataTime(long startTime, long stopTime, long runningTime, boolean hiddenStart, boolean hiddenStop) {
         this.startTime = startTime;
         this.stopTime = stopTime;
         this.runningTime = runningTime;
-        this.dayChangeStart = dayChangeStart;
-        this.dayChangeStop = dayChangeStop;
+        this.hiddenStart = hiddenStart;
+        this.hiddenStop = hiddenStop;
     }
 
+    public static DataTime defaultDataTime(){
+        return new DataTime();
+    }
+
+    @Override
     public JSONObject toJSON() {
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("startTime", startTime);
-        jsonObject.put("dayChangeStart", dayChangeStart);
-        jsonObject.put("dayChangeStop", dayChangeStop);
+        jsonObject.put("hiddenStart", hiddenStart);
+        jsonObject.put("hiddenStop", hiddenStop);
         jsonObject.put("runningTime", runningTime);
 
         if (stopTime == 0){
@@ -39,6 +48,42 @@ public class DataTime extends DataCollection {
             jsonObject.put("stopTime", stopTime);
         }
         return jsonObject;
+    }
+
+    @Override
+    public DataTime fromJSON(JSONObject jsonObject) {
+        long startTime = 0, stopTime = 0, runningTime = 0;
+        boolean hiddenStart = false, hiddenStop = false;
+
+        try {
+            startTime = jsonObject.getLong("startTime");
+        } catch (Exception ignore) {}
+
+        try {
+            stopTime = jsonObject.getLong("stopTime");
+        } catch (Exception ignore) {}
+
+        try {
+            runningTime = jsonObject.getLong("runningTime");
+        } catch (Exception ignore) {}
+
+        try {
+            hiddenStart = jsonObject.getBoolean("hiddenStart");
+        } catch (Exception ignore) {
+            try {
+                hiddenStart = jsonObject.getBoolean("dayChangeStart");
+            } catch (Exception ignore1) { }
+        }
+
+        try {
+            hiddenStop = jsonObject.getBoolean("hiddenStop");
+        } catch (Exception ignore) {
+            try {
+                hiddenStart = jsonObject.getBoolean("dayChangeStop");
+            } catch (Exception ignore1) { }
+        }
+
+        return new DataTime(startTime, stopTime, runningTime, hiddenStart, hiddenStop);
     }
 
     @Override
@@ -58,8 +103,8 @@ public class DataTime extends DataCollection {
         return startTime;
     }
 
-    public void setDayChangeStop(boolean dayChangeStop) {
-        this.dayChangeStop = dayChangeStop;
+    public void setHiddenStop(boolean hiddenStop) {
+        this.hiddenStop = hiddenStop;
     }
 
     public void setRunningTime(long runningTime) {

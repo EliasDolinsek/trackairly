@@ -1,14 +1,13 @@
 package com.dolinsek.elias.trackairly.core.times;
 
+import com.dolinsek.elias.trackairly.core.data.DataObject;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public abstract class DataCollection {
-
-    public abstract JSONObject toJSON();
+public abstract class DataCollection implements DataObject {
 
     public abstract long getTotalRunningTime();
 

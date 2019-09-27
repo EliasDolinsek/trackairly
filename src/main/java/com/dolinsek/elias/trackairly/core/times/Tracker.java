@@ -3,13 +3,11 @@ package com.dolinsek.elias.trackairly.core.times;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.function.Consumer;
 
 public class Tracker {
 
@@ -34,7 +32,7 @@ public class Tracker {
         seconds = 0;
         isRunning = true;
 
-        dataTime = new DataTime();
+        dataTime = DataTime.defaultDataTime();
         trackingData.addDataTime(dataTime);
 
         dataTime.setStartTime(System.currentTimeMillis());
@@ -51,17 +49,17 @@ public class Tracker {
             timer.cancel();
             isRunning = false;
             dataTime.setStopTime(time);
-            new OfflineDataHandler().writeData(trackingData, ConfigProvider.getConfig().getDataFile());
+            new OfflineDataHandler().writeTrackingData(trackingData, ConfigProvider.getConfig().getDataFile());
         }
     }
 
     public void stopHidden() throws IOException {
-        dataTime.setDayChangeStop(true);
+        dataTime.setHiddenStop(true);
         stop();
     }
 
     public void startHidden() throws IOException {
-        dataTime.setDayChangeStop(true);
+        dataTime.setHiddenStop(true);
         start();
     }
 
