@@ -3,6 +3,8 @@ package com.dolinsek.elias.trackairly.ui;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
+import com.dolinsek.elias.trackairly.core.networking.Networking;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         checkAlreadyRunning();
 
+        Networking.getServerStatus("http://localhost:8080/api/v1/serverstatus", "");
         Platform.setImplicitExit(false);
         currentStage = primaryStage;
 

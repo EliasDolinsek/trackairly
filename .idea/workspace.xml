@@ -2,44 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Completed first version">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/timeEvents/TimeEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_mac_11_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_11_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_mac_11_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_11_0_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_mac_11_0_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/ActionsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/timeEvents/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataDay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataDay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataMonth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataMonth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataYear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/DataYear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/Tracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/Tracker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/TrackingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/TrackingData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/actions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/actions.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/actions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/actions.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/Action.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/data/DataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/data/DataHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/data/DataProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/data/DataProvider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataCollection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataDay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataDay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataMonth.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataMonth.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataTime.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataYear.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/DataYear.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/Tracker$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/Tracker$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/timeEvents/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/timeEvents/Action.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/Tracker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/core/times/Tracker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trackairly.iml" beforeDir="false" afterPath="$PROJECT_DIR$/trackairly.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/ui/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/ui/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/ui/controller/SettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/dolinsek/elias/trackairly/ui/controller/SettingsController.class" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,54 +73,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/SettingsController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/timeEvents/Action.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#630#631#0" expanded="true" />
-                <element signature="e#664#665#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1191#1192#0" expanded="true" />
-                <element signature="e#1226#1227#0" expanded="true" />
-                <element signature="e#2777#2778#0" expanded="true" />
-                <element signature="e#2818#2819#0" expanded="true" />
-                <element signature="e#2887#2888#0" expanded="true" />
-                <element signature="e#2947#2948#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="238">
+              <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -156,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/NotificationManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="102">
               <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -166,35 +97,77 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/TrackingData.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="101" selection-start-line="2" selection-start-column="101" selection-end-line="2" selection-end-column="101" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
-              <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
-                <element signature="e#589#590#0" expanded="true" />
-                <element signature="e#625#626#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/actions.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="101" lean-forward="true" selection-start-line="2" selection-start-column="101" selection-end-line="2" selection-end-column="101" />
+            <state relative-caret-position="238">
+              <caret line="14" column="163" selection-start-line="14" selection-start-column="163" selection-end-line="14" selection-end-column="163" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/ActionsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+            <state relative-caret-position="845">
+              <caret line="139" column="84" selection-start-line="139" selection-start-column="84" selection-end-line="139" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="17" column="58" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -202,20 +175,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ConfigProvider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="187">
               <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="67" selection-start-column="67" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -257,8 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/runningTracker/core/times/DataTime.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/runningTracker/core/times/DataDay.java" />
         <option value="$PROJECT_DIR$/src/main/resources/statistics_overview.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/runningTracker/core/times/TrackingData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/runningTracker/core/times/DataYear.java" />
@@ -288,7 +250,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/StatisticsOverviewController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/actions.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/Actions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/Action.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataProvider.java" />
@@ -303,11 +264,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/times/TrackingData.java" />
         <option value="$PROJECT_DIR$/data.json" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/SettingsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/timeEvents/Action.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/actions.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/ActionsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java" />
       </list>
     </option>
   </component>
@@ -336,8 +300,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1920" />
-    <option name="height" value="1200" />
+    <option name="x" value="952" />
+    <option name="y" value="-8" />
+    <option name="width" value="976" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -465,7 +431,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569607410361" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569607833768" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -647,8 +613,8 @@
     <list>
       <item itemvalue="Application.Main 2" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.DataTime" />
       <item itemvalue="Application.DataDay" />
+      <item itemvalue="Application.DataTime" />
       <item itemvalue="Application.DataYear" />
     </list>
     <recent_temporary>
@@ -716,14 +682,14 @@
       <window_info id="UI Designer" order="1" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.32622603" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" sideWeight="0.6703755" visible="true" weight="0.34434968" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Favorites" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32885906" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Flutter Performance" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32771084" />
-      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.33173537" />
+      <window_info anchor="bottom" id="Run" order="4" weight="0.45949537" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -820,7 +786,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/javafx-src.zip!/javafx/beans/binding/ObjectExpression.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/src.zip!/java/util/List.java" />
     <entry file="file://$PROJECT_DIR$/target/classes/statistics_chart.fxml">
       <provider selected="true" editor-type-id="text-editor">
@@ -837,16 +802,6 @@
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/settings_black_48dp.png">
       <provider selected="true" editor-type-id="images" />
@@ -912,13 +867,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/home_black_48dp.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -978,14 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/actions.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/timeEvents/TimeEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -1006,16 +946,6 @@
             <element signature="e#858#859#0" expanded="true" />
             <element signature="e#919#920#0" expanded="true" />
             <element signature="e#962#963#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1139,63 +1069,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="101" lean-forward="true" selection-start-line="2" selection-start-column="101" selection-end-line="2" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/NotificationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="103" column="13" lean-forward="true" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1191#1192#0" expanded="true" />
-            <element signature="e#1226#1227#0" expanded="true" />
-            <element signature="e#2777#2778#0" expanded="true" />
-            <element signature="e#2818#2819#0" expanded="true" />
-            <element signature="e#2887#2888#0" expanded="true" />
-            <element signature="e#2947#2948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ConfigProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/SettingsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+        <state relative-caret-position="1326">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1204,20 +1081,113 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/timeEvents/Action.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
+        <state relative-caret-position="1173">
           <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/NotificationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/changelog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="101" selection-start-line="2" selection-start-column="101" selection-end-line="2" selection-end-column="101" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/OfflineDataHandler.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/actions.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="163" selection-start-line="14" selection-start-column="163" selection-end-line="14" selection-end-column="163" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ui/controller/ActionsController.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/core/data/DataHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="58" selection-start-line="17" selection-start-column="58" selection-end-line="17" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/ConfigProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" column="31" lean-forward="true" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/dolinsek/elias/trackairly/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="845">
+          <caret line="139" column="84" selection-start-line="139" selection-start-column="84" selection-end-line="139" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

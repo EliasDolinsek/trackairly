@@ -4,6 +4,7 @@ import com.dolinsek.elias.trackairly.Config;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.ui.Main;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -18,13 +19,14 @@ import java.net.URISyntaxException;
 public class SettingsController {
 
     @FXML
-    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification, cbDisplayActionNotifications, cbExitOnCloseRequest;
+    private CheckBox cbAutoTrackerStart, cbDisplayHideNotification, cbDisplayActionNotifications, cbExitOnCloseRequest, cbCheckForUpdates;
 
     @FXML
     private TextField txtDataFileLocation;
 
     @FXML
-    private Button btnChangeDataFileLocation, btnActivateAutostart, btnDeactivateAutostart;
+    private Button btnChangeDataFileLocation, btnActivateAutostart, btnDeactivateAutostart, btnCheckForUpdates, btnServerStatus;
+    
 
     //@FXML
     //private CheckBox cbHideAfterAutostart;
@@ -55,6 +57,11 @@ public class SettingsController {
             writeConfigAndUpdate();
         });
 
+        cbCheckForUpdates.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        	config.setCheckForUpdatesOnLaunch(newValue);
+        	writeConfigAndUpdate();
+        });
+        
         btnChangeDataFileLocation.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON File", "data.json"));
@@ -66,6 +73,7 @@ public class SettingsController {
                 writeConfigAndUpdate();
             }
         });
+        
 
         btnActivateAutostart.setOnAction(event -> {
             try {
@@ -81,6 +89,14 @@ public class SettingsController {
             displaySettings();
         });
 
+        btnCheckForUpdates.setOnAction(event -> {
+        	
+        });
+        
+        btnServerStatus.setOnAction(event -> {
+        	
+        });
+        
         /*
         TODO implement
         cbHideAfterAutostart.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -94,6 +110,7 @@ public class SettingsController {
         cbAutoTrackerStart.setSelected(config.startTrackerOnLaunch());
         cbDisplayHideNotification.setSelected(config.displayHideNotification());
         cbDisplayActionNotifications.setSelected(config.displayActionNotifications());
+        cbCheckForUpdates.setSelected(config.checkForUpdatesOnLaunch());
         cbExitOnCloseRequest.setSelected(config.exitOnCloseRequest());
         txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
         btnActivateAutostart.setDisable(WINDOWS_AUTOSTART_FILE.exists());

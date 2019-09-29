@@ -13,9 +13,9 @@ public class Config implements DataObject {
     public static File DEFAULT_ACTIONS_FILE = new File("actions.json");
 
     private File dataFile, actionsFile;
-    private boolean startTrackerOnLaunch, hideAfterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest;
+    private boolean startTrackerOnLaunch, hideAfterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest, checkForUpdatesOnLaunch;
 
-    public Config(File dataFile, File actionsFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification, boolean displayActionNotifications, boolean exitOnCloseRequest){
+    public Config(File dataFile, File actionsFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification, boolean displayActionNotifications, boolean exitOnCloseRequest, boolean checkForUpdatesOnLaunch){
         this.dataFile = dataFile;
         this.actionsFile = actionsFile;
         this.startTrackerOnLaunch = startTrackerOnLaunch;
@@ -23,6 +23,7 @@ public class Config implements DataObject {
         this.displayHideNotification = displayHideNotification;
         this.displayActionNotifications = displayActionNotifications;
         this.exitOnCloseRequest = exitOnCloseRequest;
+        this.checkForUpdatesOnLaunch = checkForUpdatesOnLaunch;
     }
 
     private Config(){ }
@@ -87,7 +88,17 @@ public class Config implements DataObject {
         this.exitOnCloseRequest = exitOnCloseRequest;
     }
 
-    @Override
+    
+    
+    public boolean checkForUpdatesOnLaunch() {
+		return checkForUpdatesOnLaunch;
+	}
+
+	public void setCheckForUpdatesOnLaunch(boolean checkForUpdatesOnLaunch) {
+		this.checkForUpdatesOnLaunch = checkForUpdatesOnLaunch;
+	}
+
+	@Override
     public JSONObject toJSON(){
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("dataFileLocation", dataFile.getPath());
@@ -97,6 +108,7 @@ public class Config implements DataObject {
         jsonObject.put("displayHideNotification", displayHideNotification);
         jsonObject.put("displayActionNotifications", displayActionNotifications);
         jsonObject.put("exitOnCloseRequest", exitOnCloseRequest);
+        jsonObject.put("checkForUpdatesOnLaunch", checkForUpdatesOnLaunch);
 
         return jsonObject;
     }
@@ -104,36 +116,56 @@ public class Config implements DataObject {
     @Override
     public Config fromJSON(JSONObject jsonObject) {
         File dataFile = DEFAULT_DATA_FILE, actionsFile = DEFAULT_ACTIONS_FILE;
-        boolean startTrackerOnLaunch = true, hideAufterAutostart = true, displayHideNotification = true, displayActionNotifications = true, exitOnCloseRequest = false;
+        boolean startTrackerOnLaunch = true, hideAufterAutostart = true, displayHideNotification = true, displayActionNotifications = true, exitOnCloseRequest = false, checkForUpdatesOnLaunch = true;
 
         try {
             dataFile = new File(jsonObject.getString("dataFileLocation"));
-        } catch (Exception ignore){}
+        } catch (Exception e){
+        	System.err.println(e.getMessage());
+        }
 
         try {
             actionsFile = new File(jsonObject.getString("actionsFileLocation"));
-        } catch (Exception ignore){}
+        } catch (Exception e){
+        	System.err.println(e.getMessage());
+        }
 
         try {
             startTrackerOnLaunch = jsonObject.getBoolean("startTrackerOnLaunch");
-        } catch (Exception ignore){}
+        } catch (Exception e){
+        	System.err.println(e.getMessage());
+        }
 
         try {
             hideAufterAutostart = jsonObject.getBoolean("hideAfterAutostart");
-        } catch (Exception ignore){}
+        } catch (Exception e){
+        	System.err.println(e.getMessage());
+        }
 
         try {
             displayHideNotification = jsonObject.getBoolean("displayHideNotification");
-        } catch (Exception ignore){}
+        } catch (Exception e){
+        	System.err.println(e.getMessage());
+        }
 
         try {
             displayActionNotifications = jsonObject.getBoolean("displayActionNotifications");
-        } catch (Exception ignore){}
+        } catch (Exception e){
+        	System.err.println(e.getMessage());
+        }
 
         try {
             exitOnCloseRequest = jsonObject.getBoolean("exitOnCloseRequest");
-        } catch (Exception ignroed) {}
+        } catch (Exception e) {
+        	System.err.println(e.getMessage());
+        }
 
-        return new Config(dataFile, actionsFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest);
+        try {
+            checkForUpdatesOnLaunch = jsonObject.getBoolean("checkForUpdatesOnLaunch");
+        } catch (Exception e) {
+        	System.err.println(e.getMessage());
+        }
+        
+        return new Config(dataFile, actionsFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest, checkForUpdatesOnLaunch);
     }
 }

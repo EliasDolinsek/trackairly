@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.ActionsController">
    <center>
       <ListView fx:id="listActions" prefHeight="200.0" prefWidth="333.0" BorderPane.alignment="CENTER" />
    </center>
