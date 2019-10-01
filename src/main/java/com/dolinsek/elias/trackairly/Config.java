@@ -88,8 +88,14 @@ public class Config implements DataObject {
         this.exitOnCloseRequest = exitOnCloseRequest;
     }
 
-    
-    
+    public void setActionsFile(File actionsFile) {
+        this.actionsFile = actionsFile;
+    }
+
+    public File getActionsFile() {
+        return actionsFile;
+    }
+
     public boolean checkForUpdatesOnLaunch() {
 		return checkForUpdatesOnLaunch;
 	}

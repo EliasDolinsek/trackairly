@@ -37,6 +37,7 @@ public class OfflineDataHandler implements DataHandler {
     }
 
     private ArrayList<Action> actionsFromJSON(String json){
+        if (json == null || json.trim().equals("")) return new ArrayList<>();
         final JSONObject jsonObject = new JSONObject(json);
         ArrayList<Action> actions = new ArrayList<>();
 

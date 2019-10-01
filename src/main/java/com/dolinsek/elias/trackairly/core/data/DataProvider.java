@@ -12,12 +12,13 @@ public class DataProvider {
     private static TrackingData trackingData;
     private static Tracker tracker;
     private static ArrayList<Action> actions;
+    
+    private static final OfflineDataHandler offlineDataHandler = new OfflineDataHandler();
 
     public static void init() throws Exception {
-        final OfflineDataHandler offlineDataHandler = new OfflineDataHandler();
         trackingData = offlineDataHandler.getTrackingData(ConfigProvider.getConfig().getDataFile());
         tracker = new Tracker(trackingData);
-        //actions = offlineDataHandler.getActions(ConfigP)
+        actions = offlineDataHandler.getActions(ConfigProvider.getConfig().getActionsFile());
     }
 
     public static TrackingData getTrackingData() {
@@ -28,7 +29,15 @@ public class DataProvider {
         return tracker;
     }
 
-    public static DataYear getThisDataYear() {
+    public static ArrayList<Action> getActions() {
+		return actions;
+	}
+    
+    public static void addAction(Action action) {
+    	actions.add(action);
+    }
+
+	public static DataYear getThisDataYear() {
         for (DataYear dataYear : DataProvider.getTrackingData().getDataYears()) {
             if (dataYear.getYear() == Calendar.getInstance().get(Calendar.YEAR)) {
                 return dataYear;
