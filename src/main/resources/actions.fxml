@@ -4,62 +4,76 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.ActionsController">
+<BorderPane fx:id="borderPaneRoot" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.ActionsController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-radius: 8 8 8 8; -fx-background-color: #002984;;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Actions run terminal commands at a specified time" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnCreateNewAction" mnemonicParsing="false" style="-fx-background-color: white;" text="CREATE NEW ACTION">
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <left>
+      <VBox fx:id="vBoxActionsList" alignment="CENTER" spacing="8.0">
+         <BorderPane.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+         <children>
+            <ListView fx:id="listActions" maxHeight="Infinity" style="-fx-background-color: transparent; -fx-selection-bar: #3f51b5; -fx-selection-bar-non-focused: #3f51b5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" VBox.vgrow="ALWAYS" />
+            <Button fx:id="btnDeleteAction" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #002984; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" text="DELETE SELECTED ACTION" textFill="WHITE" />
+         </children>
+      </VBox>
+   </left>
    <center>
-      <ListView fx:id="listActions" prefHeight="200.0" prefWidth="333.0" BorderPane.alignment="CENTER" />
-   </center>
-   <right>
-      <BorderPane BorderPane.alignment="CENTER">
-         <center>
-            <VBox prefHeight="400.0" prefWidth="300.0" spacing="8.0">
+      <VBox fx:id="vBoxDetails" alignment="CENTER" spacing="8.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txtName" promptText="Name" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" />
+            <TextField fx:id="txtTime" promptText="01:00" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" />
+            <FlowPane hgap="8.0">
                <children>
-                  <TextField fx:id="txtName" promptText="Name" />
-                  <TextField fx:id="txtTime" promptText="01:00" />
                   <RadioButton fx:id="rbTimeOfDay" mnemonicParsing="false" text="Time of day" />
                   <RadioButton fx:id="rbRunningTime" mnemonicParsing="false" text="Running time" />
-                  <VBox spacing="8.0" />
-                  <Separator prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets bottom="8.0" top="8.0" />
-                     </VBox.margin></Separator>
-                  <ScrollPane>
-                     <content>
-                        <VBox fx:id="vboxActions" />
-                     </content>
-                  </ScrollPane>
                </children>
-               <BorderPane.margin>
-                  <Insets left="16.0" />
-               </BorderPane.margin>
-            </VBox>
-         </center>
-         <bottom>
-            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-               <children>
-                  <Text fx:id="txtError" fill="#f44336" strokeType="OUTSIDE" strokeWidth="0.0" text="This is an error" />
-                  <HBox alignment="CENTER" spacing="8.0">
-                     <children>
-                        <Button fx:id="btnDelete" mnemonicParsing="false" text="DELETE" />
-                        <Button fx:id="btnSaveCreate" mnemonicParsing="false" text="SAVE" />
-                     </children>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </HBox>
-               </children>
-            </VBox>
-         </bottom>
-      </BorderPane>
-   </right>
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </FlowPane>
+            <VBox spacing="8.0" />
+            <TextArea fx:id="taCommands" maxHeight="Infinity" promptText="Seperate commands with new line" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0); -fx-text-box-border: transparent;" VBox.vgrow="ALWAYS" />
+            <Text fx:id="txtInfoError" strokeType="OUTSIDE" strokeWidth="0.0" text="Seperate commands with new line">
+               <VBox.margin>
+                  <Insets bottom="4.0" top="8.0" />
+               </VBox.margin></Text>
+         </children>
+         <BorderPane.margin>
+            <Insets left="8.0" right="8.0" top="8.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="8.0" />
+         </padding>
+      </VBox>
+   </center>
    <padding>
-      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
    </padding>
 </BorderPane>

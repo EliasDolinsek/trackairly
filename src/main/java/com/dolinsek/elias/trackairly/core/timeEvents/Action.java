@@ -4,7 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.PortableInterceptor.SUCCESSFUL;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Action extends TimeEvent{
 
@@ -17,10 +19,13 @@ public class Action extends TimeEvent{
 
     private Action(){
         super("", 0, 0, TimeEventTriggerType.RUNNING_TIME);
+        this.commands = new ArrayList<>();
     }
 
     public static Action defaultAction(){
-        return new Action();
+        final Action action = new Action();
+        action.setName("New Action");
+        return action;
     }
 
     public ArrayList<String> getCommands() {
@@ -82,6 +87,13 @@ public class Action extends TimeEvent{
         return actions;
     }
 
+    public void setTimesFromString(String string) throws Exception {
+        String[] splitString = string.split(":");
+        if (splitString.length <= 1) throw new Exception("Couldn't parse " + string);
+        setHours(Integer.parseInt(splitString[0]));
+        setMinutes(Integer.parseInt(splitString[1]));
+    }
+
     public static JSONObject actionsToJSON(ArrayList<Action> actions){
         final JSONObject jsonObject = new JSONObject();
         final JSONArray jsonArray = new JSONArray();
@@ -92,5 +104,9 @@ public class Action extends TimeEvent{
         }
 
         return jsonObject;
+    }
+
+    public void setCommandsFromString(String commands) {
+        setCommands(new ArrayList<>(Arrays.asList(commands.split(System.lineSeparator()))));
     }
 }
