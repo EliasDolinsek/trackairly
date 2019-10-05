@@ -2,6 +2,7 @@ package com.dolinsek.elias.trackairly;
 
 import com.dolinsek.elias.trackairly.core.data.DataHandler;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
+import com.dolinsek.elias.trackairly.core.timeEvents.TimeEventsTrigger;
 
 public class ConfigProvider {
 

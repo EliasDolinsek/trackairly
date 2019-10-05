@@ -2,6 +2,8 @@ package com.dolinsek.elias.trackairly.core.data;
 
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.timeEvents.Action;
+import com.dolinsek.elias.trackairly.core.timeEvents.TimeEvent;
+import com.dolinsek.elias.trackairly.core.timeEvents.TimeEventsTrigger;
 import com.dolinsek.elias.trackairly.core.times.*;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class DataProvider {
     private static TrackingData trackingData;
     private static Tracker tracker;
     private static ArrayList<Action> actions;
+    private static TimeEventsTrigger timeEventsTrigger;
     
     private static final OfflineDataHandler offlineDataHandler = new OfflineDataHandler();
 
@@ -19,6 +22,8 @@ public class DataProvider {
         trackingData = offlineDataHandler.getTrackingData(ConfigProvider.getConfig().getDataFile());
         tracker = new Tracker(trackingData);
         actions = offlineDataHandler.getActions(ConfigProvider.getConfig().getActionsFile());
+        timeEventsTrigger = new TimeEventsTrigger(actions);
+        timeEventsTrigger.checkDayTimeChanges();
     }
 
     public static TrackingData getTrackingData() {
@@ -37,7 +42,24 @@ public class DataProvider {
     	actions.add(action);
     }
 
-	public static DataYear getThisDataYear() {
+    public static TimeEventsTrigger getTimeEventsTrigger() {
+        return timeEventsTrigger;
+    }
+
+    public static void updateTimeEventsTriggerData(){
+        timeEventsTrigger.setActions(actions);
+    }
+
+    public static long getTodaysRunningTime(){
+        try {
+            return DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear())).getTotalRunningTime();
+        } catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static DataYear getThisDataYear() {
         for (DataYear dataYear : DataProvider.getTrackingData().getDataYears()) {
             if (dataYear.getYear() == Calendar.getInstance().get(Calendar.YEAR)) {
                 return dataYear;

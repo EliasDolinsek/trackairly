@@ -1,9 +1,13 @@
 package com.dolinsek.elias.trackairly.core.timeEvents;
 
+import com.dolinsek.elias.trackairly.ConfigProvider;
+import com.dolinsek.elias.trackairly.ui.NotificationManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.PortableInterceptor.SUCCESSFUL;
 
+import java.awt.*;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,13 +16,13 @@ public class Action extends TimeEvent{
 
     private ArrayList<String> commands;
 
-    public Action(String name, int hours, int minutes, TimeEventTriggerType timeEventTriggerType, ArrayList<String> commands) {
-        super(name, hours, minutes, timeEventTriggerType);
+    public Action(String name, int hours, int minutes, TimeEventTriggerType timeEventTriggerType, ArrayList<String> commands, boolean executed) {
+        super(name, hours, minutes, timeEventTriggerType, executed);
         this.commands = commands;
     }
 
     private Action(){
-        super("", 0, 0, TimeEventTriggerType.RUNNING_TIME);
+        super("", 0, 0, TimeEventTriggerType.RUNNING_TIME, false);
         this.commands = new ArrayList<>();
     }
 
@@ -108,5 +112,30 @@ public class Action extends TimeEvent{
 
     public void setCommandsFromString(String commands) {
         setCommands(new ArrayList<>(Arrays.asList(commands.split(System.lineSeparator()))));
+    }
+
+    @Override
+    public void execute() {
+        setExecuted(true);
+
+        if (ConfigProvider.getConfig().displayActionNotifications()){
+            try {
+                NotificationManager.displayNotification("trackairly action triggered", "Running " + getName(), TrayIcon.MessageType.INFO);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        runCommands();
+    }
+
+    private void runCommands(){
+        for (String command:commands){
+            try {
+                Runtime.getRuntime().exec(command.split(" "));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

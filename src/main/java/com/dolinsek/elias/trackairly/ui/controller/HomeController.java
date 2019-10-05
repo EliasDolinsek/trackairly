@@ -75,8 +75,7 @@ public class HomeController {
 
     private void displayTexts() {
         try {
-            final long runningTime = DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear())).getTotalRunningTime();
-            txtTime.setText(DataCollection.getTotalRunningTimeAsString(runningTime, true));
+            txtTime.setText(DataCollection.getTotalRunningTimeAsString(DataProvider.getTodaysRunningTime(), true));
         } catch (Exception e) {
             txtTime.setText(tracker.getRunningTimeAsString());
         }

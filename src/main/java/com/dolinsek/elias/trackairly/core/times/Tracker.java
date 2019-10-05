@@ -1,6 +1,7 @@
 package com.dolinsek.elias.trackairly.core.times;
 
 import com.dolinsek.elias.trackairly.ConfigProvider;
+import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
 
 import java.io.IOException;
@@ -84,6 +85,7 @@ public class Tracker {
                     dataTime.setRunningTime(seconds * 1000);
                     onTimeChangedListeners.forEach(OnTimeChangedListener::onSecondChanged);
                     previousRecordTime = System.currentTimeMillis();
+                    DataProvider.getTimeEventsTrigger().onDayRunningTimeChanged(DataProvider.getTodaysRunningTime());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

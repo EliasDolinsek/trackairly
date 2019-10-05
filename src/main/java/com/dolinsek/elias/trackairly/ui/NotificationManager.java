@@ -13,13 +13,13 @@ public class NotificationManager {
     }
     public static void displayHideNotification() {
         try {
-            displayTray("trackairly now hidden", "trackairly is now running in background", TrayIcon.MessageType.INFO);
+            displayNotification("trackairly now hidden", "trackairly is now running in background", TrayIcon.MessageType.INFO);
         } catch (Exception e) {
             System.err.println("Error displaying tray: " + e.getMessage());
         }
     }
 
-    public static void displayTray(String title, String subtitle, TrayIcon.MessageType messageType) throws Exception {
+    public static void displayNotification(String title, String subtitle, TrayIcon.MessageType messageType) throws Exception {
         if (SystemTray.isSupported()) {
             SystemTray systemTray = SystemTray.getSystemTray();
             java.awt.Image image = Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/ic_launcher.png"));

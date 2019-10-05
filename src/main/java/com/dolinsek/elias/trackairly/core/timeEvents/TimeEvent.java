@@ -1,20 +1,21 @@
 package com.dolinsek.elias.trackairly.core.timeEvents;
 
 import com.dolinsek.elias.trackairly.core.data.DataObject;
-import org.json.JSONObject;
 
 public abstract class TimeEvent implements DataObject {
 
     protected String name;
     protected int hours, minutes;
     protected TimeEventTriggerType timeEventTriggerType;
+    protected boolean executed;
 
 
-    public TimeEvent(String name, int hours, int minutes, TimeEventTriggerType timeEventTriggerType) {
+    public TimeEvent(String name, int hours, int minutes, TimeEventTriggerType timeEventTriggerType, boolean executed) {
         this.name = name;
         this.hours = hours;
         this.minutes = minutes;
         this.timeEventTriggerType = timeEventTriggerType;
+        this.executed = executed;
     }
 
     public String getName() {
@@ -48,6 +49,16 @@ public abstract class TimeEvent implements DataObject {
     public void setTimeEventTriggerType(TimeEventTriggerType timeEventTriggerType) {
         this.timeEventTriggerType = timeEventTriggerType;
     }
+
+    public boolean isExecuted() {
+        return executed;
+    }
+
+    public void setExecuted(boolean executed) {
+        this.executed = executed;
+    }
+
+    public abstract void execute();
 
     public static enum  TimeEventTriggerType {
         TIME_OF_DAY, RUNNING_TIME;

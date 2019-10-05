@@ -79,6 +79,7 @@ public class ActionsController implements Initializable {
     	currentAction = action;
     	txtName.setText(currentAction.getName());
     	txtTime.setText(String.format("%02d:%02d", currentAction.getHours(), currentAction.getMinutes()));
+    	setCommandsText();
     	
     	if (currentAction.getTimeEventTriggerType() == TimeEventTriggerType.TIME_OF_DAY){
     		rbTimeOfDay.setSelected(true);
@@ -89,7 +90,18 @@ public class ActionsController implements Initializable {
     	setupListSelection();
     }
 
-    private void setupButtons(){
+	private void setCommandsText() {
+    	if(currentAction != null){
+			StringBuilder commands = new StringBuilder();
+			for (String command:currentAction.getCommands()){
+				commands.append(command).append(System.lineSeparator());
+			}
+
+			taCommands.setText(commands.toString());
+		}
+	}
+
+	private void setupButtons(){
 		btnDeleteAction.setOnAction(event -> {
 			DataProvider.getActions().remove(currentAction);
 			currentAction = null;
@@ -165,6 +177,8 @@ public class ActionsController implements Initializable {
 
 	private void writeActionsUpdate() {
 		try {
+			if (currentAction != null) currentAction.setExecuted(false);
+			DataProvider.updateTimeEventsTriggerData();
 			ConfigProvider.getDataHandler().writeActions(DataProvider.getActions(), ConfigProvider.getConfig().getActionsFile());
 		} catch (Exception e) {
 			displayError("Couldn't update action in file (" + e.getMessage() + ")");
