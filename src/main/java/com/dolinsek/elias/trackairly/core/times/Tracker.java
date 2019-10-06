@@ -60,8 +60,8 @@ public class Tracker {
     }
 
     public void startHidden() throws IOException {
-        dataTime.setHiddenStop(true);
         start();
+        dataTime.setHiddenStart(true);
     }
 
     public boolean isRunning(){

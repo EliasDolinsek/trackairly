@@ -8,14 +8,17 @@ import java.io.File;
 
 public class Config implements DataObject {
 
+    public static String DEFAULT_VERSIONS_SERVER_URL = "http://localhost:8080/api/v1";
+
     public static File DEFAULT_CONFIG_FILE = new File("config.json");
     public static File DEFAULT_DATA_FILE = new File("data.json");
     public static File DEFAULT_ACTIONS_FILE = new File("actions.json");
 
+    private String versionsServerURL;
     private File dataFile, actionsFile;
     private boolean startTrackerOnLaunch, hideAfterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest, checkForUpdatesOnLaunch;
 
-    public Config(File dataFile, File actionsFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification, boolean displayActionNotifications, boolean exitOnCloseRequest, boolean checkForUpdatesOnLaunch){
+    public Config(File dataFile, File actionsFile, boolean startTrackerOnLaunch, boolean hideAfterAutostart, boolean displayHideNotification, boolean displayActionNotifications, boolean exitOnCloseRequest, boolean checkForUpdatesOnLaunch, String versionsServerURL){
         this.dataFile = dataFile;
         this.actionsFile = actionsFile;
         this.startTrackerOnLaunch = startTrackerOnLaunch;
@@ -24,6 +27,7 @@ public class Config implements DataObject {
         this.displayActionNotifications = displayActionNotifications;
         this.exitOnCloseRequest = exitOnCloseRequest;
         this.checkForUpdatesOnLaunch = checkForUpdatesOnLaunch;
+        this.versionsServerURL = versionsServerURL;
     }
 
     private Config(){ }
@@ -104,7 +108,15 @@ public class Config implements DataObject {
 		this.checkForUpdatesOnLaunch = checkForUpdatesOnLaunch;
 	}
 
-	@Override
+    public String getVersionsServerURL() {
+        return versionsServerURL;
+    }
+
+    public void setVersionsServerURL(String versionsServerURL) {
+        this.versionsServerURL = versionsServerURL;
+    }
+
+    @Override
     public JSONObject toJSON(){
         final JSONObject jsonObject = new JSONObject();
         jsonObject.put("dataFileLocation", dataFile.getPath());
@@ -115,12 +127,14 @@ public class Config implements DataObject {
         jsonObject.put("displayActionNotifications", displayActionNotifications);
         jsonObject.put("exitOnCloseRequest", exitOnCloseRequest);
         jsonObject.put("checkForUpdatesOnLaunch", checkForUpdatesOnLaunch);
+        jsonObject.put("versionsServerURL", versionsServerURL);
 
         return jsonObject;
     }
 
     @Override
     public Config fromJSON(JSONObject jsonObject) {
+        String versionsServerURL = DEFAULT_VERSIONS_SERVER_URL;
         File dataFile = DEFAULT_DATA_FILE, actionsFile = DEFAULT_ACTIONS_FILE;
         boolean startTrackerOnLaunch = true, hideAufterAutostart = true, displayHideNotification = true, displayActionNotifications = true, exitOnCloseRequest = false, checkForUpdatesOnLaunch = true;
 
@@ -171,7 +185,13 @@ public class Config implements DataObject {
         } catch (Exception e) {
         	System.err.println(e.getMessage());
         }
-        
-        return new Config(dataFile, actionsFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest, checkForUpdatesOnLaunch);
+
+        try {
+            versionsServerURL = jsonObject.getString("versionsServerURL");
+        } catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+
+        return new Config(dataFile, actionsFile, startTrackerOnLaunch, hideAufterAutostart, displayHideNotification, displayActionNotifications, exitOnCloseRequest, checkForUpdatesOnLaunch, versionsServerURL);
     }
 }

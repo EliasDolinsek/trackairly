@@ -10,6 +10,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class StatisticsChartsController {
 
@@ -145,7 +146,8 @@ public class StatisticsChartsController {
         btnDate.setDisable(false);
         if (chartDisplay == ChartDisplay.DAYS) {
             DataMonth month = (DataMonth) statisticsData.get(selectedIndex);
-            btnDate.setText(DataCollection.monthToString(month.getMonth()));
+            int year = DataProvider.getTrackingData().dataYearOfDataMonth(month).getYear();
+            btnDate.setText(DataCollection.monthToString(month.getMonth()) + " " + year);
         } else if (chartDisplay == ChartDisplay.MONTHS) {
             DataYear dataYear = (DataYear) statisticsData.get(selectedIndex);
             btnDate.setText(String.valueOf(dataYear.getYear()));
@@ -159,7 +161,8 @@ public class StatisticsChartsController {
         final XYChart.Series<String, Double> series = new XYChart.Series<>();
         series.setName(DataCollection.monthToString(dataMonth.getMonth()));
 
-        for (DataDay dataDay : dataMonth.getCompleteDataDays()) {
+        int year = DataProvider.getTrackingData().dataYearOfDataMonth(dataMonth).getYear();
+        for (DataDay dataDay : dataMonth.getCompleteDataDays(year)) {
             series.getData().add(new XYChart.Data<>(dataDay.getDay() + ".", totalRunningTimeInHours(dataDay.getTotalRunningTime())));
         }
 

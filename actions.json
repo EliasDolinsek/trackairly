@@ -1,1 +1,1 @@
-{"actions":[{"hours":21,"minutes":35,"name":"Sleep","timeEventTriggerType":"TIME_OF_DAY","commands":["pmset sleepnow"]}]}
+{"actions":[{"hours":0,"minutes":0,"name":"New Action","timeEventTriggerType":"RUNNING_TIME","commands":[]}]}

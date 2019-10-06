@@ -42,7 +42,7 @@ public class DataYear extends DataCollection {
 
     public ArrayList<DataMonth> getCompleteDataMonths(){
         final ArrayList<DataMonth> allDataMonths = new ArrayList<>(getDataMonths());
-        for (int i = 0; i<11; i++){
+        for (int i = 0; i<12; i++){
             if (getDataMonthByMonth(i, allDataMonths) == null){
                 allDataMonths.add(i, DataMonth.defaultDataMonth(i));
             }

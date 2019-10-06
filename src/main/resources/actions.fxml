@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPaneRoot" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.ActionsController">
+<BorderPane fx:id="borderPaneRoot" stylesheets="style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.ActionsController">
    <top>
-      <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-radius: 8 8 8 8; -fx-background-color: #002984;;">
+      <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-radius: 8 8 8 8; -fx-background-color: #002984; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Actions run terminal commands at a specified time" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnCreateNewAction" mnemonicParsing="false" style="-fx-background-color: white;" text="CREATE NEW ACTION">
+            <Button fx:id="btnCreateNewAction" mnemonicParsing="false" text="CREATE NEW ACTION" styleClass="white-button">
                <FlowPane.margin>
                   <Insets />
                </FlowPane.margin>
@@ -40,15 +40,15 @@
          </BorderPane.margin>
          <children>
             <ListView fx:id="listActions" maxHeight="Infinity" style="-fx-background-color: transparent; -fx-selection-bar: #3f51b5; -fx-selection-bar-non-focused: #3f51b5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" VBox.vgrow="ALWAYS" />
-            <Button fx:id="btnDeleteAction" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #002984; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" text="DELETE SELECTED ACTION" textFill="WHITE" />
+            <Button fx:id="btnDeleteAction" maxWidth="Infinity" mnemonicParsing="false" styleClass="primary-color-button" text="DELETE SELECTED ACTION" textFill="WHITE" />
          </children>
       </VBox>
    </left>
    <center>
       <VBox fx:id="vBoxDetails" alignment="CENTER" spacing="8.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtName" promptText="Name" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" />
-            <TextField fx:id="txtTime" promptText="01:00" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);" />
+            <TextField fx:id="txtName" promptText="Name" />
+            <TextField fx:id="txtTime" promptText="01:00" />
             <FlowPane hgap="8.0">
                <children>
                   <RadioButton fx:id="rbTimeOfDay" mnemonicParsing="false" text="Time of day" />

@@ -38,6 +38,7 @@ public class HomeController {
                     update();
                 } else {
                     startTracker();
+                    update();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

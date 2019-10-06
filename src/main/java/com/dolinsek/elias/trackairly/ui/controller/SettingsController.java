@@ -3,12 +3,16 @@ package com.dolinsek.elias.trackairly.ui.controller;
 import com.dolinsek.elias.trackairly.Config;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.DataProvider;
+import com.dolinsek.elias.trackairly.core.networking.Networking;
+import com.dolinsek.elias.trackairly.core.networking.ServerStatus;
 import com.dolinsek.elias.trackairly.ui.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import mslinks.ShellLink;
 
@@ -25,7 +29,7 @@ public class SettingsController {
     private TextField txtDataFileLocation;
 
     @FXML
-    private Button btnChangeDataFileLocation, btnActivateAutostart, btnDeactivateAutostart, btnCheckForUpdates, btnServerStatus;
+    private Button btnChangeDataFilesLocation, btnActivateAutostart, btnDeactivateAutostart, btnCheckForUpdates, btnServerStatus;
     
 
     //@FXML
@@ -61,14 +65,15 @@ public class SettingsController {
         	config.setCheckForUpdatesOnLaunch(newValue);
         	writeConfigAndUpdate();
         });
-        
-        btnChangeDataFileLocation.setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON File", "data.json"));
-            File selectedDirectory = fileChooser.showSaveDialog(Main.getCurrentStage());
 
-            if (selectedDirectory != null) {
-                config.setDataFile(selectedDirectory);
+        btnChangeDataFilesLocation.setOnAction(event -> {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File directory = directoryChooser.showDialog(Main.getCurrentStage());
+
+            if (directory != null) {
+                config.setDataFile(new File(directory.getAbsolutePath() + File.separator + "data.json"));
+                config.setActionsFile(new File(directory.getAbsolutePath() + File.separator + "actions.json"));
+
                 writeData();
                 writeConfigAndUpdate();
             }
@@ -94,7 +99,18 @@ public class SettingsController {
         });
         
         btnServerStatus.setOnAction(event -> {
-        	
+            ServerStatus serverStatus = new ServerStatus("ERROR", "Couldn't connect to trackairly server", 0);
+        	try {
+        	    serverStatus = Networking.getServerStatus(ConfigProvider.getConfig().getVersionsServerURL() + "/serverstatus");
+            } catch (Exception e){
+        	    e.printStackTrace();
+            }
+
+            final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        	alert.setTitle("trackairly server status");
+        	alert.setHeaderText(serverStatus.getServerStatus());
+        	alert.setContentText(serverStatus.getDescription());
+        	alert.show();
         });
         
         /*
@@ -112,10 +128,15 @@ public class SettingsController {
         cbDisplayActionNotifications.setSelected(config.displayActionNotifications());
         cbCheckForUpdates.setSelected(config.checkForUpdatesOnLaunch());
         cbExitOnCloseRequest.setSelected(config.exitOnCloseRequest());
-        txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
         btnActivateAutostart.setDisable(WINDOWS_AUTOSTART_FILE.exists());
         btnDeactivateAutostart.setDisable(!WINDOWS_AUTOSTART_FILE.exists());
         //cbHideAfterAutostart.setSelected(config.hideAfterAutostart()); TODO implement
+
+        if (config.getDataFile().isDirectory()){
+            txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
+        } else {
+            txtDataFileLocation.setText(config.getDataFile().getParent());
+        }
     }
 
     private void writeConfigAndUpdate() {
@@ -130,6 +151,7 @@ public class SettingsController {
     private void writeData() {
         try {
             ConfigProvider.getDataHandler().writeTrackingData(DataProvider.getTrackingData(), config.getDataFile());
+            ConfigProvider.getDataHandler().writeActions(DataProvider.getActions(), config.getActionsFile());
         } catch (Exception e) {
             e.printStackTrace();
         }

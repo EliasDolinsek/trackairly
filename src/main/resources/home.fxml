@@ -7,6 +7,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <BorderPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.HomeController">
    <center>
       <VBox alignment="CENTER">
@@ -17,7 +19,7 @@
                </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TODAY" />
-            <Button fx:id="btnTracking" mnemonicParsing="false">
+            <Button fx:id="btnTracking" mnemonicParsing="false" style="-fx-background-color: #002984; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);" textFill="WHITE">
                <VBox.margin>
                   <Insets top="16.0" />
                </VBox.margin>
@@ -26,18 +28,19 @@
       </VBox>
    </center>
    <bottom>
-      <VBox alignment="CENTER" spacing="8.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" spacing="8.0" style="-fx-background-radius: 8 8 8 8; -fx-background-color: #002984; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 0);">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="trackairly is able to run in background, just click the close option or the HIDE NOW button below. To re-open it, click on the SHOW option in the Tray-Menu" textAlignment="CENTER" wrappingWidth="492.09619140625">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Text>
-            <Button fx:id="btnHide" mnemonicParsing="false" text="HIDE NOW" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="trackairly is able to run in background. you can re-open it in the tray-menu" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnHide" mnemonicParsing="false" style="-fx-background-color: white;" text="HIDE NOW">
+            </Button>
          </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
          <BorderPane.margin>
-            <Insets bottom="32.0" left="8.0" right="8.0" top="8.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </BorderPane.margin>
-      </VBox>
+      </HBox>
    </bottom>
 </BorderPane>

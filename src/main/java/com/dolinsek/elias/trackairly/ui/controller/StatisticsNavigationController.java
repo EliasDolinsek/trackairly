@@ -45,7 +45,15 @@ public class StatisticsNavigationController {
         btnMonths.setToggleGroup(tgButtons);
         btnYears.setToggleGroup(tgButtons);
 
-        tgButtons.selectedToggleProperty().addListener((observable, oldValue, newValue) -> setupForToggledButton(newValue));
+        btnRefresh.getStyleClass().add("primary-color-button");
+
+        tgButtons.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null){
+                tgButtons.selectToggle(oldValue);
+            } else {
+                setupForToggledButton(newValue);
+            }
+        });
         btnRefresh.setOnAction(event -> {
             if (DataProvider.getTrackingData().hasData()){
                 statisticsOverviewController.update();
@@ -80,6 +88,7 @@ public class StatisticsNavigationController {
     }
 
     private void setupForToggledButton(Toggle newValue) {
+        setToggleButtonsStyleForSelection();
         if (newValue == btnOverview) {
             root.setCenter(overview);
         } else if (newValue == btnDays) {
@@ -91,6 +100,25 @@ public class StatisticsNavigationController {
         } else {
             root.setCenter(charts);
             statisticsChartsController.loadYearsStatistics();
+        }
+    }
+
+    private void setToggleButtonsStyleForSelection(){
+        ToggleButton selectedButton = (ToggleButton)tgButtons.getSelectedToggle();
+        setToggleButtonStyle(btnOverview, selectedButton == btnOverview);
+        setToggleButtonStyle(btnDays, selectedButton == btnDays);
+        setToggleButtonStyle(btnMonths, selectedButton == btnMonths);
+        setToggleButtonStyle(btnYears, selectedButton == btnYears);
+    }
+
+    private void setToggleButtonStyle(ToggleButton button, boolean selected){
+        button.getStyleClass().remove("white-button");
+        button.getStyleClass().remove("primary-color-button");
+
+        if (selected){
+            button.getStyleClass().add("primary-color-button");
+        } else {
+            button.getStyleClass().add("white-button");
         }
     }
 }

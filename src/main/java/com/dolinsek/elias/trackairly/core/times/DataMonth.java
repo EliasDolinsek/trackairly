@@ -35,13 +35,14 @@ public class DataMonth extends DataCollection{
         return dataDays;
     }
 
-    public ArrayList<DataDay> getCompleteDataDays(){
+    public ArrayList<DataDay> getCompleteDataDays(int year){
         final ArrayList<DataDay> allDataDays = new ArrayList<>(getDataDays());
 
         Calendar calendar = Calendar.getInstance();
-        for (int i = 0; i< YearMonth.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)).lengthOfMonth(); i++){
+        calendar.set(year, month, 1);
+        for (int i = 1; i<calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + 1; i++){
             if (getDataDay(i) == null){
-                allDataDays.add(i, DataDay.emptyDataDay(i));
+                allDataDays.add(i - 1, DataDay.emptyDataDay(i));
             }
         }
 
@@ -129,11 +130,10 @@ public class DataMonth extends DataCollection{
     @Override
     public void sort() {
         super.sort();
-        Collections.sort(dataDays, Comparator.comparingInt(DataDay::getDay));
+        dataDays.sort(Comparator.comparingInt(DataDay::getDay));
 
         for (DataDay dataDay:dataDays){
             dataDay.sort();
         }
     }
-
 }

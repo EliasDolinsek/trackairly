@@ -13,7 +13,7 @@ import java.util.Calendar;
 public class StatisticsOverviewController {
 
     @FXML
-    private Text txtToday, txtThisWeek, txtThisMonth, txtThisYear, txtTotal;
+    private Text txtToday, txtThisMonth, txtThisYear, txtTotal;
 
     public void initialize() {
         update();
@@ -25,7 +25,6 @@ public class StatisticsOverviewController {
             setMonthText();
             setTodayText();
             setTotalText();
-            setThisWeekText();
         }
     }
 
@@ -62,30 +61,6 @@ public class StatisticsOverviewController {
             txtToday.setText(DataCollection.getTotalRunningTimeAsString(dataDay.getTotalRunningTime(), false));
         } else {
             txtToday.setText("N/A");
-        }
-    }
-
-    private void setThisWeekText(){
-        try {
-            txtThisWeek.setText(DataCollection.getTotalRunningTimeAsString(getThisWeekTimes(), false));
-        } catch (Exception e){
-            txtThisWeek.setText("N/A");
-        }
-    }
-
-    private long getThisWeekTimes() {
-        final DataMonth dataMonth = DataProvider.getThisDataMonth(DataProvider.getThisDataYear());
-        if (dataMonth != null){
-            long totalTimes = 0;
-            for (DataDay dataDay:dataMonth.getCompleteDataDays()){
-                if (dataDay.getDay() >= Calendar.getInstance().getFirstDayOfWeek() && dataDay.getDay() <= Calendar.getInstance().get(Calendar.DAY_OF_MONTH)){
-                    totalTimes += dataDay.getTotalRunningTime();
-                }
-            }
-
-            return totalTimes;
-        } else {
-            throw new IllegalStateException("No times");
         }
     }
 }

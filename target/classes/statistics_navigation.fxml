@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.StatisticsNavigationController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.StatisticsNavigationController">
     <top>
         <HBox alignment="CENTER" spacing="8.0" BorderPane.alignment="CENTER">
             <children>
@@ -22,7 +22,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@refresh_black_36dp.png" />
+                        <Image url="@refresh_white_36dp.png" />
                      </image>
                   </ImageView>
                </graphic>

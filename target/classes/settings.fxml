@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.SettingsController">
+<ScrollPane maxWidth="Infinity" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.SettingsController">
    <content>
-      <VBox spacing="8.0">
+      <VBox maxWidth="Infinity" spacing="8.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tracking">
                <font>
@@ -37,9 +37,9 @@
             </Text>
             <HBox alignment="CENTER_LEFT" spacing="16.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data file location" />
-                  <TextField fx:id="txtDataFileLocation" editable="false" prefWidth="300" />
-                  <Button fx:id="btnChangeDataFileLocation" mnemonicParsing="false" text="CHANGE" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data files location" />
+                  <TextField fx:id="txtDataFileLocation" editable="false" prefWidth="300" styleClass="white-text-field" />
+                  <Button fx:id="btnChangeDataFilesLocation" mnemonicParsing="false" styleClass="primary-color-button" text="CHANGE" />
                </children>
                <VBox.margin>
                   <Insets top="8.0" />
@@ -55,7 +55,10 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <CheckBox fx:id="cbExitOnCloseRequest" mnemonicParsing="false" text="Exit on close request" />
+            <CheckBox fx:id="cbExitOnCloseRequest" mnemonicParsing="false" text="Exit on close request">
+               <padding>
+                  <Insets top="8.0" />
+               </padding></CheckBox>
             <Separator prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
@@ -66,13 +69,16 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Start trackairly automatically when you turn on your computer" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Start trackairly automatically when you turn on your computer">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin></Text>
             <VBox>
                <children>
                   <HBox spacing="8.0">
                      <children>
-                        <Button fx:id="btnActivateAutostart" mnemonicParsing="false" text="ACTIVATE" />
-                        <Button fx:id="btnDeactivateAutostart" mnemonicParsing="false" text="DEACTIVATE" />
+                        <Button fx:id="btnActivateAutostart" mnemonicParsing="false" styleClass="primary-color-button" text="ACTIVATE" />
+                        <Button fx:id="btnDeactivateAutostart" mnemonicParsing="false" styleClass="white-button" text="DEACTIVATE" />
                      </children>
                   </HBox>
                </children>
@@ -87,25 +93,36 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <CheckBox fx:id="cbDisplayHideNotification" mnemonicParsing="false" text="Display hide notification" />
+            <CheckBox fx:id="cbDisplayHideNotification" mnemonicParsing="false" text="Display hide notification">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin></CheckBox>
             <CheckBox fx:id="cbDisplayActionNotifications" mnemonicParsing="false" text="Display action notification" />
             <Separator layoutX="42.0" layoutY="365.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
             </Separator>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Updates">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <CheckBox fx:id="cbCheckForUpdates" mnemonicParsing="false" text="Check for updates on launch" />
-            <HBox spacing="8.0">
+            <VBox disable="true" spacing="8.0">
                <children>
-                  <Button fx:id="btnCheckForUpdates" mnemonicParsing="false" text="CHECK FOR UPDATES" />
-                  <Button fx:id="btnServerStatus" mnemonicParsing="false" text="SERVER STATUS" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Updates">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <CheckBox fx:id="cbCheckForUpdates" mnemonicParsing="false" text="Check for updates on launch">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <HBox spacing="8.0">
+                     <children>
+                        <Button fx:id="btnCheckForUpdates" mnemonicParsing="false" styleClass="primary-color-button" text="CHECK FOR UPDATES" />
+                        <Button fx:id="btnServerStatus" mnemonicParsing="false" styleClass="white-button" text="SERVER STATUS" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
             <Separator prefWidth="200.0">
                <padding>
                   <Insets bottom="8.0" top="8.0" />
@@ -116,8 +133,11 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Version 1.0.0-beta" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is an early build! Some features are missing and bugs may occur!" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Version 1.1.0-beta">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin></Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is an early build. Some features are missing and bugs may occur!" />
             <Separator prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />
@@ -128,9 +148,12 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Elias Dolinsek" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Elias Dolinsek">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin></Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="elias.dolinsek@gmail.com" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="For any questions, feel free to contact me via email!" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="For any questions, feel free to contact me via email" />
             <Separator prefWidth="200.0">
                <padding>
                   <Insets bottom="8.0" top="8.0" />
@@ -141,8 +164,11 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You can donate via BITCOIN if you want to, every donation is highly appreciated!" />
-            <TextField editable="false" text="34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You can donate via BITCOIN if you want to, every donation is highly appreciated!">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin></Text>
+            <TextField editable="false" styleClass="white-text-field" text="34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ34NsJVvXxcGENZSfiN62eErPu8oMA4BtyZ" />
          </children>
          <padding>
             <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />

@@ -8,8 +8,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.StatisticsOverviewController">
-    <children>
+<VBox alignment="CENTER" spacing="64.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.StatisticsOverviewController">
+   <children>
       <VBox alignment="CENTER">
          <children>
             <Text fx:id="txtToday" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
@@ -20,29 +20,17 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TODAY" />
          </children>
       </VBox>
-        <GridPane alignment="CENTER" vgap="32.0">
-            <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
+      <GridPane alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints valignment="TOP" vgrow="ALWAYS" />
+         </rowConstraints>
+         <children>
             <VBox alignment="CENTER">
-               <children>
-                  <Text fx:id="txtThisWeek" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THIS WEEK" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" GridPane.columnIndex="1">
                <children>
                   <Text fx:id="txtThisMonth" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
@@ -51,8 +39,11 @@
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THIS MONTH" />
                </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
             </VBox>
-            <VBox alignment="CENTER" layoutX="10.0" layoutY="42.0" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" GridPane.columnIndex="1">
                <children>
                   <Text fx:id="txtThisYear" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
@@ -61,8 +52,11 @@
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THIS YEAR" />
                </children>
+               <GridPane.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </GridPane.margin>
             </VBox>
-            <VBox alignment="CENTER" layoutX="10.0" layoutY="96.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="CENTER" GridPane.columnIndex="2">
                <children>
                   <Text fx:id="txtTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
                      <font>
@@ -71,11 +65,11 @@
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL" />
                </children>
+               <GridPane.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </GridPane.margin>
             </VBox>
-            </children>
-         <padding>
-            <Insets top="32.0" />
-         </padding>
-        </GridPane>
-    </children>
+         </children>
+      </GridPane>
+   </children>
 </VBox>

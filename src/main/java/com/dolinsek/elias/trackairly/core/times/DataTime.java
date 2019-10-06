@@ -107,6 +107,18 @@ public class DataTime extends DataCollection {
         this.hiddenStop = hiddenStop;
     }
 
+    public boolean isHiddenStart() {
+        return hiddenStart;
+    }
+
+    public boolean isHiddenStop() {
+        return hiddenStop;
+    }
+
+    public void setHiddenStart(boolean hiddenStart) {
+        this.hiddenStart = hiddenStart;
+    }
+
     public void setRunningTime(long runningTime) {
         this.runningTime = runningTime;
     }

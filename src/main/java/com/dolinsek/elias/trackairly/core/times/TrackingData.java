@@ -56,6 +56,14 @@ public class TrackingData implements DataObject {
         return new TrackingData(dataYears);
     }
 
+    public DataYear dataYearOfDataMonth(DataMonth dataMonth){
+        for (DataYear dataYear:dataYears){
+            if (dataYear.getDataMonths().contains(dataMonth)) return dataYear;
+        }
+
+        return null;
+    }
+
     private ArrayList<DataYear> dataYearsFromJSONArray(JSONArray jsonArray){
         ArrayList<DataYear> dataYears = new ArrayList<>();
         for (int i = 0; i<jsonArray.length(); i++){

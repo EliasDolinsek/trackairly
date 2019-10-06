@@ -25,7 +25,6 @@ public class TimeEventsTrigger implements Runnable {
 
     private void onDayTimeChanged(int hour, int minutes) {
         for (TimeEvent timeEvent : actions) {
-            System.out.println(hour + " " + minutes);
             if (!timeEvent.isExecuted() && timeEvent.timeEventTriggerType == TimeEvent.TimeEventTriggerType.TIME_OF_DAY && timeEvent.hours == hour && timeEvent.minutes == minutes) {
                 timeEvent.execute();
             }

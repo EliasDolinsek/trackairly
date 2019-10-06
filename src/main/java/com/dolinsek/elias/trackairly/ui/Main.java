@@ -31,9 +31,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         checkAlreadyRunning();
 
-        Networking.getServerStatus("http://localhost:8080/api/v1/serverstatus", "");
         Platform.setImplicitExit(false);
         currentStage = primaryStage;
+
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(522);
 
         initApp();
         setupShutdownHook();
@@ -41,12 +43,17 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent root = loader.load();
-        primaryStage.setScene(new Scene(root));
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        primaryStage.setScene(scene);
+
         primaryStage.setOnCloseRequest(event -> {
             if (ConfigProvider.getConfig().exitOnCloseRequest()){
                 Platform.exit();
                 System.exit(1);
             } else {
+                primaryStage.hide();
                 NotificationManager.displayHideNotificationByConfig();
             }
         });
@@ -56,6 +63,7 @@ public class Main extends Application {
 
         if (!getParameters().getRaw().contains("autostart")) primaryStage.show();
     }
+
 
     private void setupShutdownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
