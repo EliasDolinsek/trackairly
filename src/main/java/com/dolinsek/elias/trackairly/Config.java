@@ -30,10 +30,8 @@ public class Config implements DataObject {
         this.versionsServerURL = versionsServerURL;
     }
 
-    private Config(){ }
-
     public static Config defaultConfig(){
-        return new Config();
+        return new Config(DEFAULT_DATA_FILE, DEFAULT_ACTIONS_FILE, true, false, true, true, false, true, DEFAULT_VERSIONS_SERVER_URL);
     }
 
     public static Config defaultFromDataHandler(DataHandler dataHandler) throws Exception {

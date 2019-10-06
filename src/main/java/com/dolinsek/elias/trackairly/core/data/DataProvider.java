@@ -54,7 +54,7 @@ public class DataProvider {
         try {
             return DataProvider.getThisDataDay(DataProvider.getThisDataMonth(DataProvider.getThisDataYear())).getTotalRunningTime();
         } catch (Exception e){
-            e.printStackTrace();
+            System.err.println("No tracking data (DataProvider)");
             return 0;
         }
     }

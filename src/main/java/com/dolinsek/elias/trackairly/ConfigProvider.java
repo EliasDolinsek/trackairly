@@ -10,8 +10,8 @@ public class ConfigProvider {
     private static DataHandler dataHandler;
 
     public static void init() throws Exception {
-        config = Config.defaultFromDataHandler(new OfflineDataHandler());
         dataHandler = new OfflineDataHandler();
+        config = Config.defaultFromDataHandler(dataHandler);
     }
 
     public static Config getConfig() {

@@ -135,7 +135,7 @@ public class SettingsController {
         if (config.getDataFile().isDirectory()){
             txtDataFileLocation.setText(config.getDataFile().getAbsolutePath());
         } else {
-            txtDataFileLocation.setText(config.getDataFile().getParent());
+            txtDataFileLocation.setText(config.getDataFile().getAbsoluteFile().getParent());
         }
     }
 
