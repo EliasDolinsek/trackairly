@@ -48,7 +48,7 @@ public class OfflineDataHandler implements DataHandler {
         return actions;
     }
 
-    private String getFileContent(File file) throws Exception {
+    public String getFileContent(File file) throws Exception {
         if (!file.exists()) {
             return "";
         }

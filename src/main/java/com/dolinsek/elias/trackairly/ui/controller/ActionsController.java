@@ -1,7 +1,9 @@
 package com.dolinsek.elias.trackairly.ui.controller;
 
 import com.dolinsek.elias.trackairly.ConfigProvider;
-import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
+import com.dolinsek.elias.trackairly.core.data.DataProvider;
+import com.dolinsek.elias.trackairly.core.timeEvents.Action;
+import com.dolinsek.elias.trackairly.core.timeEvents.TimeEvent.TimeEventTriggerType;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,10 +18,6 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import com.dolinsek.elias.trackairly.core.data.DataProvider;
-import com.dolinsek.elias.trackairly.core.timeEvents.Action;
-import com.dolinsek.elias.trackairly.core.timeEvents.TimeEvent.TimeEventTriggerType;
 
 public class ActionsController implements Initializable {
 

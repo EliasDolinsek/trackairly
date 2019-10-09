@@ -1,6 +1,5 @@
 package com.dolinsek.elias.trackairly.core.times;
 
-import com.dolinsek.elias.trackairly.core.data.DataObject;
 import org.json.JSONObject;
 
 public class DataTime extends DataCollection {
@@ -14,12 +13,6 @@ public class DataTime extends DataCollection {
         runningTime = 0;
         hiddenStart = false;
         hiddenStop = false;
-    }
-
-    public DataTime(long startTime, long stopTime, long runningTime) {
-        this.startTime = startTime;
-        this.stopTime = stopTime;
-        this.runningTime = runningTime;
     }
 
     public DataTime(long startTime, long stopTime, long runningTime, boolean hiddenStart, boolean hiddenStop) {
@@ -57,31 +50,45 @@ public class DataTime extends DataCollection {
 
         try {
             startTime = jsonObject.getLong("startTime");
-        } catch (Exception ignore) {}
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
         try {
             stopTime = jsonObject.getLong("stopTime");
-        } catch (Exception ignore) {}
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
         try {
             runningTime = jsonObject.getLong("runningTime");
-        } catch (Exception ignore) {}
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
 
         try {
             hiddenStart = jsonObject.getBoolean("hiddenStart");
-        } catch (Exception ignore) {
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
             try {
                 hiddenStart = jsonObject.getBoolean("dayChangeStart");
-            } catch (Exception ignore1) { }
+            } catch (Exception eOld) {
+                System.err.println(eOld.getMessage());
+            }
         }
 
         try {
             hiddenStop = jsonObject.getBoolean("hiddenStop");
-        } catch (Exception ignore) {
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
             try {
                 hiddenStart = jsonObject.getBoolean("dayChangeStop");
-            } catch (Exception ignore1) { }
+            } catch (Exception eOld) {
+                System.err.println(eOld.getMessage());
+            }
         }
+
+        if (runningTime == 0) runningTime = stopTime - startTime;
 
         return new DataTime(startTime, stopTime, runningTime, hiddenStart, hiddenStop);
     }

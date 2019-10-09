@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane maxWidth="Infinity" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.SettingsController">
+<ScrollPane maxWidth="Infinity" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dolinsek.elias.trackairly.ui.controller.SettingsController">
    <content>
-      <VBox maxWidth="Infinity" spacing="8.0">
+      <VBox fx:id="vBoxRoot" maxWidth="Infinity" spacing="8.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tracking">
                <font>
@@ -103,7 +103,7 @@
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
             </Separator>
-            <VBox disable="true" spacing="8.0">
+            <VBox fx:id="vBoxUpdates" disable="true" spacing="8.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Updates">
                      <font>
@@ -123,7 +123,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Separator prefWidth="200.0">
+            <Separator fx:id="spearatorUpdates" prefWidth="200.0" visible="false">
                <padding>
                   <Insets bottom="8.0" top="8.0" />
                </padding>
@@ -133,11 +133,10 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Version 1.1.0-beta">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Version 1.0.0">
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin></Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is an early build. Some features are missing and bugs may occur!" />
             <Separator prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="8.0" top="8.0" />

@@ -6,14 +6,10 @@ import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.core.networking.Networking;
 import com.dolinsek.elias.trackairly.core.networking.ServerStatus;
 import com.dolinsek.elias.trackairly.ui.Main;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import mslinks.ShellLink;
 
 import java.io.File;
@@ -30,6 +26,12 @@ public class SettingsController {
 
     @FXML
     private Button btnChangeDataFilesLocation, btnActivateAutostart, btnDeactivateAutostart, btnCheckForUpdates, btnServerStatus;
+
+    @FXML
+    private VBox vBoxUpdates, vBoxRoot;
+
+    @FXML
+    private Separator spearatorUpdates;
     
 
     //@FXML
@@ -40,6 +42,8 @@ public class SettingsController {
     private final File WINDOWS_AUTOSTART_FILE = new File("C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\trackairly_autostart.lnk");
 
     public void initialize() {
+        hideUpdateSettings();
+
         displaySettings();
         cbAutoTrackerStart.selectedProperty().addListener((observable, oldValue, newValue) -> {
             config.setStartTrackerOnLaunch(newValue);
@@ -120,6 +124,11 @@ public class SettingsController {
             writeConfigAndUpdate();
         });
         */
+    }
+
+    private void hideUpdateSettings() {
+        vBoxRoot.getChildren().remove(vBoxUpdates);
+        vBoxRoot.getChildren().remove(spearatorUpdates);
     }
 
     private void displaySettings() {

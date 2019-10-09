@@ -18,7 +18,7 @@ public class TimeEventsTrigger implements Runnable {
 
         for (TimeEvent timeEvent : actions) {
             if (!timeEvent.isExecuted() && timeEvent.timeEventTriggerType == TimeEvent.TimeEventTriggerType.RUNNING_TIME && timeEvent.hours == hours && timeEvent.minutes == minutes) {
-                timeEvent.execute();
+                if (minutes != 0 && hours != 0) timeEvent.execute();
             }
         }
     }
