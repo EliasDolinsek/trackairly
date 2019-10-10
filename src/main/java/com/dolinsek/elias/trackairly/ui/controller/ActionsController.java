@@ -121,6 +121,7 @@ public class ActionsController implements Initializable {
     	txtName.textProperty().addListener((observable, oldValue, newValue) -> {
     		if(currentAction != null) {
     			currentAction.setName(newValue);
+
     			loadActionsList();
     			writeActionsUpdate();
     		}
@@ -130,6 +131,8 @@ public class ActionsController implements Initializable {
     		if(currentAction != null){
     			try {
     				currentAction.setTimesFromString(newValue);
+					currentAction.setExecuted(false);
+
     				displayInfoText();
     				writeActionsUpdate();
 				} catch (Exception e){

@@ -3,8 +3,6 @@ package com.dolinsek.elias.trackairly.ui;
 import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.core.data.DataProvider;
 import com.dolinsek.elias.trackairly.core.data.OfflineDataHandler;
-import com.dolinsek.elias.trackairly.core.networking.Networking;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -53,8 +51,8 @@ public class Main extends Application {
                 Platform.exit();
                 System.exit(1);
             } else {
-                primaryStage.hide();
                 NotificationManager.displayHideNotificationByConfig();
+                primaryStage.hide();
             }
         });
 

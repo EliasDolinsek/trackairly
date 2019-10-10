@@ -4,11 +4,9 @@ import com.dolinsek.elias.trackairly.ConfigProvider;
 import com.dolinsek.elias.trackairly.ui.NotificationManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.omg.PortableInterceptor.SUCCESSFUL;
 
 import java.awt.*;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -120,7 +118,7 @@ public class Action extends TimeEvent{
 
         if (ConfigProvider.getConfig().displayActionNotifications()){
             try {
-                NotificationManager.displayNotification("trackairly action triggered", "Running " + getName(), TrayIcon.MessageType.INFO);
+                NotificationManager.displayNotification("trackairly action triggered", "Running " + getName(), TrayIcon.MessageType.INFO, NotificationManager.DURATION_LONG);
             } catch (Exception e) {
                 e.printStackTrace();
             }
